@@ -6,8 +6,11 @@ fetch("", {
 })
   .then(res => res.json())
   .thent(data => {
-    console.log(data)
-    let orgName = document.createElement("span")
-    let buttons = document.createElement("span")
-    
+    console.log(data);
+    let tr = document.createElement("tr");
+    let orgName = document.createElement("td");
+    let agree = document.createElement("td");
+    let accept = document.createElement("button");
+    let reject = document.createElement("button");
+    orgName.innerText = data.name;
   })
