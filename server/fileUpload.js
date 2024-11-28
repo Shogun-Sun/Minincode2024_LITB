@@ -7,7 +7,7 @@ const fs = require("fs");
  */
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    const dataSavePath = path.join(__dirname, "../../users_data/");
+    const dataSavePath = path.join(__dirname, "../users_data/");
     cb(null, dataSavePath); 
   },
   filename: (req, file, cb) => {

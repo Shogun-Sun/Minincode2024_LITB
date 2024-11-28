@@ -6,6 +6,7 @@ const bodyparser = require("body-parser");
 const { sequelize, User, Organization } = require("./server/database");
 const session = require("./server/session");
 const fs = require("fs");
+const upload = require("./server/fileUpload");
 
 const hash = require("bcrypt");
 const salt = hash.genSaltSync(13);
@@ -241,6 +242,17 @@ app.get("/organization/getverified/data", async (req, res) => {
   res.status(200).json({ status: "ok", data: data });
 });
 
+
+app.post("/profile/upload/avatar", upload.single("avatar"), (req, res) => {
+    if (req.file) {
+      res.status(200).json({ status: "ok", message: "аватар успешно загружен!" });
+    } else {
+      res.status(400).json({
+        status: "error",
+        message: "Ошибка загрузки аватара, попробуйте еще раз",
+      });
+    }
+  });
 app.get("/user/get/data", (req, res) => {
   if (req.session.user) {
     const avatar = path.join(

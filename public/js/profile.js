@@ -30,6 +30,36 @@ document.addEventListener("DOMContentLoaded", () => {
         // Аватар и текст приветствия
         profileContainer.appendChild(avatar_container);
         document.querySelector('main').appendChild(profileContainer)
+
+        document.querySelector("main").appendChild(avatar_container);
+
+        fileInput.addEventListener("change", (e) => {
+            const formData = new FormData();
+            const file = e.target.files[0];
+            if (file) {
+              formData.append("avatar", file);
+  
+              // Отправка файла на сервер через fetch
+              fetch("/profile/upload/avatar", {
+                method: "POST",
+                body: formData,
+              })
+              .then((response) => response.json())
+              .then((data) => {
+                if (data.status === "ok") {
+                  alert(data.message); 
+                  avatar.src = data.avatar;
+                  window.location.reload();
+                } else {
+                  alert(data.message); 
+                }
+              })
+              .catch((error) => {
+                console.error("Ошибка:", error);
+                alert("Что-то пошло не так.");
+              });
+            }
+          });
       }
     })
     .catch((error) => {});
