@@ -14,6 +14,7 @@ function sendOrgData() {
     regForm.phone = document.querySelector("#phone").value;
     regForm.address = document.querySelector("#address").value;
     regForm.orgn = document.querySelector("#OGRN").value;
+    regForm.password = document.querySelector("#first_password").value
     console.log(regForm);
     fetch("/organization/reg/data", {
         method:"POST",
