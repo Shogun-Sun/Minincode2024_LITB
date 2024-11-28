@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/css/regorg.css">
+    <title>Organization registration</title>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <h1>Регистрация организации</h1>
+            <label for="regname">Название организации:</label>
+            <input name="regname" id="regname">
+            <br>
+            <div class="requisites">
+                <p>Контактная информация</p>
+                <lable for="mail">Почта</lable>
+                <input type="email" name="mail" id="mail">
+                <br>
+                <lable for="phone">Телефон</lable>
+                <input type="phone" name="phone" id="phone">
+                <br>
+                <lable for="address">Адрес</lable>
+                <input type="address" name="address" id="address">
+                <br>
+                <lable for="OGRN">ОГРН</lable>
+                <input type="number" name="OGRN" id="OGRN">
+            </div>
+            <button id="send">Отправить форму регистации</button>
+        </div>
+    </main>
+    <script src="/public/js/regorg.js"></script>
+</body>
+</html>
