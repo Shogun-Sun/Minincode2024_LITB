@@ -42,6 +42,36 @@ label{
 }
 
 @media (min-width: 1000px) and (max-width: 1484px){
+    .container{
+        
+    }
+    #avatar{
+        display: flex;
+        justify-content: center;
+        padding: 30px;
+    }
+    #avatar_pict{
+        display: block;
+        border-radius: 10px;
+        height: auto;
+        width: 250px;
+        object-fit: contain;
+    }
+    h1{
+        color: var(--text-color);
+        font-size: 60px;
+        text-align: center;
+    }
+    #contactInfo{
+        display: flex;
+        flex-direction: column;
+    }
+    #contactInfo > p{
+        color: var(--text-color);
+        font-size: 25px;
+        display: block;
+        margin: 20px;
+    }
 }
 
 @media (min-width: 1485px){
@@ -57,7 +87,7 @@ label{
         display: block;
         border-radius: 10px;
         height: auto;
-        width: 350px;
+        width: 250px;
         object-fit: contain;
     }
     h1{
