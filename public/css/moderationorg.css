@@ -13,25 +13,216 @@
     --line-clr: rgb(66, 67, 74);
     --secondary-text-color: rgb(201, 201, 201);
 }
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--base-color);
+    height: min(100vh);
+    width: 100%;
+}
+.modal_button{
+    padding: 7px 15px 7px 15px;
+    font-size: 20px;
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border-radius: 5px;
+    border:1px solid var(--accent-color);
+    transition: all 0.3s ease;
+}
+.modal_button:hover{
+    background-color: var(--text-color);
+    color: var(--accent-color);
+    transition: all 0.3s ease;
+}
+.modal-content{
+    background-color: var(--base-color);
+    color: white;
+}
+.modal-dialog{
+    padding: 20px;
+}
+.btn-close{
+    background-color: var(--secondary-text-color);
+}
+.button{
+    padding: 7px 15px 7px 15px;
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border-radius: 5px;
+    border:1px solid var(--accent-color);
+    transition: all 0.3s ease;
+}
+.button:hover{
+    background-color: var(--text-color);
+    color: var(--accent-color);
+    transition: all 0.3s ease;
+}
+
 @media (max-width: 661px){
-    
+    #container{
+        width: 95%;
+    }
+    #tb{
+        padding: 20px;
+        border-radius: 10px;
+        border: 2px solid var(--line-clr);
+        color: var(--text-color);
+        display: flex;
+        justify-content: center;
+        font-size: 14px;
+        caption{
+            font-size: 12px;
+            color: var(--text-color);
+            text-align: center;
+        }
+        table{
+            width: 100%;
+            border-collapse: collapse;
+            border: 2px solid var(--accent-color);
+            position: relative;
+            th, td{
+                text-align: center;
+            }
+            th{
+                padding: 10px;
+                position: -webkit-sticky;
+                position: sticky;
+                top: 0;
+                z-index: 1;
+                background-color: var(--base-color);
+            }
+            tr{
+                height: 50px;
+                border: 2px solid var(--accent-color);
+            }
+            .confirm{
+                display: flex;
+                height: 100%;
+                flex-direction: column;
+                justify-content: space-between;
+                padding: 10px;
+            }
+            tbody tr:nth-child(odd) {
+                background-color: rgba(218, 2, 66, 0.4);
+              }
+        }
+    }
+    .button{
+        display: block;
+        padding: 2px 2px 2px 2px;
+        font-size: 14px;
+        margin: 5px;
+    }
 }
 
 @media (min-width: 662px) and (max-width: 999px){
-    
+    #container{
+        width: 640px;
+    }
+    #tb{
+        padding: 20px;
+        border-radius: 10px;
+        border: 2px solid var(--line-clr);
+        color: var(--text-color);
+        display: flex;
+        justify-content: center;
+        font-size: 14px;
+        caption{
+            font-size: 12px;
+            color: var(--text-color);
+            text-align: center;
+        }
+        table{
+            width: 100%;
+            border-collapse: collapse;
+            border: 2px solid var(--accent-color);
+            position: relative;
+            th, td{
+                text-align: center;
+            }
+            th{
+                padding: 10px;
+                position: -webkit-sticky;
+                position: sticky;
+                top: 0;
+                z-index: 1;
+                background-color: var(--base-color);
+            }
+            tr{
+                border: 2px solid var(--accent-color);
+            }
+            .confirm{
+                display: flex;
+                justify-content: space-around;
+                padding: 10px;
+            }
+            tbody tr:nth-child(odd) {
+                background-color: rgba(218, 2, 66, 0.4);
+              }
+        }
+    }
+    .button{
+        padding: 3px 10px 3px 10px;
+        font-size: 14px;
+    }
 }
 
 @media (min-width: 1000px) and (max-width: 1484px){
-    
+    #container{
+        width: 950px;
+    }
+    #tb{
+        padding: 30px;
+        color: var(--text-color);
+        border: 1px solid var(--line-clr);
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        font-size: 18px;
+        caption{
+            font-size: 14px;
+            color: var(--text-color);
+            text-align: center;
+        }
+        table{
+            width: 90%;
+            border-collapse: collapse;
+            border: 2px solid var(--accent-color);
+            position: relative;
+            th, td{
+                width: 300px;
+                padding: 10px;
+                text-align: center;
+            }
+            th{
+                position: -webkit-sticky;
+                position: sticky;
+                top: 0;
+                z-index: 1;
+                background-color: var(--base-color);
+            }
+            tr{
+                border: 2px solid var(--accent-color);
+            }
+            .confirm{
+                display: flex;
+                justify-content: space-around;
+            }
+            tbody tr:nth-child(odd) {
+                background-color: rgba(218, 2, 66, 0.4);
+              }
+        }
+    }
+    .button{
+        padding: 7px 15px 7px 15px;
+        font-size: 18px;
+    }
 }
 
 @media (min-width: 1485px){
-    main{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: var(--base-color);
-        height: min(100vh);
+    #container{
+        width: 1200px;
     }
     #tb{
         padding: 30px;
@@ -77,25 +268,6 @@
     }
     .button{
         padding: 7px 15px 7px 15px;
-        background-color: var(--accent-color);
-        color: var(--text-color);
-        border-radius: 5px;
-        border:1px solid var(--accent-color);
-        transition: all 0.3s ease;
-    }
-    .button:hover{
-        background-color: var(--text-color);
-        color: var(--accent-color);
-        transition: all 0.3s ease;
-    }
-    .modal-content{
-        background-color: var(--base-color);
-        color: white;
-    }
-    .modal-dialog{
-        padding: 20px;
-    }
-    .btn-close{
-        background-color: var(--secondary-text-color);
+        font-size: 20px;
     }
 }
