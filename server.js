@@ -199,7 +199,26 @@ app.put("/organization/getunverified/update", async (req, res) => {
     res.status(500).json({ message: "Ошибка при обновлении" });
   }
 });
+app.delete("/organization/getverified/delete", async (req, res) => {
+  const { ogrn } = req.body;
 
+  try {
+    const organization = await Organization.destroy({
+      where: {
+        ogrn: ogrn,
+      },
+    });
+
+    if (organization) {
+      return res.status(200).json({ message: "Организация успешно удалена" });
+    } else {
+      return res.status(400).json({ message: "Организация не найдена" });
+    }
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Произошла неизвестная ошибка" });
+  }
+});
 app.get("/organization/getverified/data", async (req, res) => {
   const data = await Organization.findAll({
     where: {
