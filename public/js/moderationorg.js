@@ -1,4 +1,4 @@
-fetch("/organization/get/data", {
+fetch("/organization/getunverified/data", {
     method: "GET",
     headers: {
         "Content-Type": "application/json",

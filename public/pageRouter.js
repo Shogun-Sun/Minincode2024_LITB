@@ -14,7 +14,7 @@ router.get("/user/log/page", (req, res) => {
 router.get("/organization/reg/page", (req, res) => {
   res.sendFile(path.join(__dirname, "../pages", "regorg.html"));
 });
-router.get("/organization/verified/page", (req, res) => {
+router.get("/organization/page", (req, res) => {
   res.sendFile(path.join(__dirname, "../pages", "orgpages.html"));
 });
 router.get("/moderationorg", (req, res) => {
