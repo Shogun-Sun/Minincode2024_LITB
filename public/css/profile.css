@@ -1,9 +1,22 @@
-#prof_container{
-    border: 2px solid var(--accent-clr); 
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial;
+    text-decoration: none;
+    outline: none;
+    border: none;
+}
+:root{
+    --text-color:rgb(255, 255, 255); 
+    --accent-color: rgb(218, 2, 66);
+    --base-color:  rgb(17, 24, 39);
+    --line-clr: rgb(66, 67, 74);
+    --secondary-text-color: rgb(201, 201, 201);
+}
+main{
+    min-height: 100vh;
+    min-width: 100%;
+    background-color: var(--base-color);
 }
 label{
     display: block;
@@ -19,4 +32,47 @@ label{
     height: 0;
     width: 0;
     overflow: hidden;
+}
+
+@media (max-width: 661px){
+
+}
+
+@media (min-width: 662px) and (max-width: 999px){
+}
+
+@media (min-width: 1000px) and (max-width: 1484px){
+}
+
+@media (min-width: 1485px){
+    .container{
+        
+    }
+    #avatar{
+        display: flex;
+        justify-content: center;
+        padding: 30px;
+    }
+    #avatar_pict{
+        display: block;
+        border-radius: 10px;
+        height: auto;
+        width: 350px;
+        object-fit: contain;
+    }
+    h1{
+        color: var(--text-color);
+        font-size: 60px;
+        text-align: center;
+    }
+    #contactInfo{
+        display: flex;
+        flex-direction: column;
+    }
+    #contactInfo > p{
+        color: var(--text-color);
+        font-size: 25px;
+        display: block;
+        margin: 20px;
+    }
 }

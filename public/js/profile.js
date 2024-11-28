@@ -18,18 +18,12 @@ document.addEventListener("DOMContentLoaded", () => {
         fileInput.id = "input_avatar";
 
         avatar.src = data.data.avatar;
-        avatar.id = "avatar";
+        avatar.id = "avatar_pict";
         avatar.alt = "Аватар пользователя";
 
         avatar_container.setAttribute("for", "input_avatar");
         avatar_container.appendChild(avatar);
         avatar_container.appendChild(fileInput);
-
-        const profileContainer = document.createElement("div");
-        profileContainer.setAttribute('id','prof_container')
-        // Аватар и текст приветствия
-        profileContainer.appendChild(avatar_container);
-        document.querySelector('#avatar').appendChild(profileContainer)
 
         document.querySelector("#avatar").appendChild(avatar_container);
 
@@ -69,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
             let sections = document.createElement("div");
             let events = document.createElement("div")
 
-            document.querySelector("#name").textContent = `Приветствую ${data.data.name}`;
+            document.querySelector("#name").textContent = `${data.data.name}`;
             name.textContent = `Имя: ${data.data.name}`;
             surname.textContent = `Фамилия: ${data.data.surname}`;
             middle_name.textContent = `Отчество: ${data.data.middle_name}`;
