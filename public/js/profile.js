@@ -24,8 +24,12 @@ document.addEventListener("DOMContentLoaded", () => {
         avatar_container.setAttribute("for", "input_avatar");
         avatar_container.appendChild(avatar);
         avatar_container.appendChild(fileInput);
+
+        const profileContainer = document.createElement("div");
+        profileContainer.setAttribute('id','prof_container')
         // Аватар и текст приветствия
-        document.querySelector("main").appendChild(avatar_container);
+        profileContainer.appendChild(avatar_container);
+        document.querySelector('main').appendChild(profileContainer)
       }
     })
     .catch((error) => {});
