@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
 router.get("/user/reg/page", (req, res) => {
   res.sendFile(path.join(__dirname, "../pages", "reguser.html"));
 });
-router.get("/user/log/page", (req, res) => {
+router.get("/user/log/page",  (req, res) => {
   res.sendFile(path.join(__dirname, "../pages", "loginuser.html"));
 });
 router.get("/organization/reg/page", (req, res) => {

@@ -97,8 +97,11 @@ const Organization = sequelize.define(
     },
     work_time: {
       type: DataTypes.STRING(255),
-      allowNull: false,
-
+      allowNull: true,
+    },
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: true,
     }
   },
   {

@@ -5,13 +5,13 @@ function checkRole(req, res, next) {
     return next();
   }
 
-//   if (req.session.user && req.session.user.role === "user") {
+  if (req.session.user && req.session.user.role === "user") {
    
-//     const allowedPathsForUser = ["/user/profile", "/user/settings"];
-//     if (allowedPathsForUser.includes(req.originalUrl)) {
-//       return next();  // Доступ разрешен
-//     }
-//   }
+    const allowedPathsForUser = ["/user/profile", "/user/settings"];
+    if (allowedPathsForUser.includes(req.originalUrl)) {
+      return next();  // Доступ разрешен
+    }
+  }
 
   if (req.session.user && req.session.user.role === "organization") {
     const allowedPathsForOrg = ["/organization/profile", "/organization/dashboard"]; 
@@ -22,9 +22,9 @@ function checkRole(req, res, next) {
 
   // Для гостей: разрешаем доступ только к определенным страницам
   if (!req.session.user) {
-    const allowedPathsForGuest = ["/", "/user/log/page", "/user/reg/page"];
+    const allowedPathsForGuest = ["/", "/user/reg/page"];
     if (allowedPathsForGuest.includes(req.originalUrl)) {
-      return next();  // Доступ разрешен
+      return next();  
     }
   }
 
