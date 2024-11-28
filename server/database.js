@@ -98,8 +98,8 @@ sequelize
   .authenticate()
   .then(() => {
     console.log("Подключение успешно");
-    User.sync({alter: true});
-    Organization.sync({alter: true});
+    User.sync();
+    Organization.sync();
   })
   .catch((error) => {
     console.log("Ошибка при подключении:", error);
