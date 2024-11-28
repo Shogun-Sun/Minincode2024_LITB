@@ -16,4 +16,8 @@ router.get("/moderationorg", (req, res) => {
         res.sendFile(path.join(__dirname, "../pages", "moderationorg.html"));
 })
 
+router.get("/user/login/page", (req, res) => {
+        res.sendFile(path.join(__dirname, "../pages", "loginuser.html"));
+})
+
 module.exports = router;
