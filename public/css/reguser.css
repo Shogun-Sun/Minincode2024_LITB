@@ -13,15 +13,3 @@
     --line-clr: rgb(66, 67, 74);
     --secondary-text-color: rgb(201, 201, 201);
 }
-
-@media (max-width: 661px){
-}
-
-@media (min-width: 662px) and (max-width: 999px){
-}
-
-@media (min-width: 1000px) and (max-width: 1484px){
-}
-
-@media (min-width: 1485px){
-}
