@@ -9,13 +9,13 @@ document.querySelector("#send").onclick = () => {
     }
 };
 function sendOrgData() {
-    regForm.regname = document.querySelector("#regname").value;
-    regForm.mail = document.querySelector("#mail").value;
+    regForm.name = document.querySelector("#regname").value;
+    regForm.email = document.querySelector("#mail").value;
     regForm.phone = document.querySelector("#phone").value;
     regForm.address = document.querySelector("#address").value;
-    regForm.OGRN = document.querySelector("#OGRN").value;
+    regForm.orgn = document.querySelector("#OGRN").value;
     console.log(regForm);
-    fetch("/regorg", {
+    fetch("/organization/reg/data", {
         method:"POST",
         headers: {
             "Content-Type": "application/json",

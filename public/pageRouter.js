@@ -5,8 +5,11 @@ const router = express.Router();
 router.get("/", (req, res) => {
         res.sendFile(path.join(__dirname, "../pages", "home.html"));
 });
-router.get("/user/reg", (req, res) => {
+router.get("/user/reg/page", (req, res) => {
         res.sendFile(path.join(__dirname, "../pages", "reguser.html"));
+})
+router.get("/organization/reg/page", (req, res) => {
+        res.sendFile(path.join(__dirname, "../pages", "regorg.html"));
 })
 
 module.exports = router;
