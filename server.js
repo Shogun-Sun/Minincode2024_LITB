@@ -36,18 +36,10 @@ app.post("/user/reg/data", async (req,res) => {
           } else {
             return res.status(400).json({
               status: "error",
-              message: "Пользователь ",
+              message: "Пользователь с такой почтой уже существует",
             });
           }
-    
-          const id = await User.findOne({ where: { username: username }});
-          const avatar_img_path = path.join(__dirname, "users_data", "avatar.jpg");
-          const img_user_path = path.join(
-            __dirname,
-            "users_data",
-            `${id.id}.jpg`
-          );
-          fs.copyFileSync(avatar_img_path, img_user_path);
+
           res
             .status(200)
             .json({ status: "ok", message: "Вы успешно зарегистрированы" });
