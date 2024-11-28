@@ -123,7 +123,11 @@ app.post("/organization/reg/data", async (req, res) => {
 
 
 app.get("/organization/get/data", async (req, res) => {
-    const data = await Organization.findAll();
+    const data = await Organization.findAll({
+        where: {
+            confirmed: false,
+        }
+    });
     res.status(200).json({status: "ok", data: data});
 })
 
