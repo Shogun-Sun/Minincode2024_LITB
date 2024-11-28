@@ -88,4 +88,14 @@
         color: var(--accent-color);
         transition: all 0.3s ease;
     }
+    .modal-content{
+        background-color: var(--base-color);
+        color: white;
+    }
+    .modal-dialog{
+        padding: 20px;
+    }
+    .btn-close{
+        background-color: var(--secondary-text-color);
+    }
 }
