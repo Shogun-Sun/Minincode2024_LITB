@@ -1,0 +1,457 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    text-decoration: none;
+    border: none;
+    outline: none;
+}
+:root{
+    --text-color:rgb(255, 255, 255); 
+    --accent-color: rgb(218, 2, 66);
+    --color-icon: rgb(255, 255, 255);
+    --base-color:  rgb(17, 24, 39);
+    --line-clr: #42434a;
+}
+
+main{
+    padding: min(30px);
+}
+main p{
+    color: var(--text-color);
+    margin-top: 5px;
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+.container{
+    border: 1px solid var(--line-clr);
+    border-radius: 10px;                
+    margin-bottom: 20px;
+    padding: min(3em, 15%);
+    h2, p{
+        margin-top: 1em;
+        color: var(--text-color);
+    }
+}
+.icons{
+    color: var(--color-icon);
+    transition: all 0.5s ease;
+} 
+.section{
+    border-radius: 10px;
+    border: 1px solid var(--text-color);
+    color: var(--text-color);
+    transition: all 0.5s ease;
+}
+.section:hover{
+    border-radius: 20px;
+    background-color:var(--text-color);
+    color: var(--accent-color);
+    transition: all 0.5s ease;
+}
+.section::after{
+    position: absolute; 
+    font-weight: bold;
+    text-align: center;
+    border-radius: 10px;
+}
+#section_1::after{
+    content: " Home";
+}
+#section_2::after{
+    content: " Stack";
+}
+#section_3::after{
+    content: " Code";
+}
+#section_4::after{
+    content: " log in";
+}
+#section_5::after{
+    content: " Settings";
+}
+
+.active{
+    background-color: var(--text-color);
+    border-radius: 20px;
+    .icons{
+        color:var(--accent-color);
+    }
+}
+
+#avatar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#avatar_label {
+    display: block;
+    border:2px solid yellow;
+	border-radius: 10px;
+	text-align: center;
+    height: 200px;
+    width: 200px;
+    img{
+        width: 200px;
+        height: 200px;
+        border-radius:10px ;
+    }
+}
+#test_input {
+    height: 0px; 
+    width: 0px;
+    overflow: hidden;
+}
+#tb{
+    padding: 30px;
+    color: var(--text-color);
+    border: 1px solid var(--line-clr);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    caption{
+        font-size: 14px;
+        color: var(--text-color);
+        text-align: center;
+    }
+    table{
+        width: 70%;
+        border-collapse: collapse;
+        border: 2px solid var(--accent-color);
+        position: relative;
+        td, th{
+            padding: 10px;
+            text-align: center;
+        }
+        th{
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            background-color: var(--base-color);
+        }
+        td:hover{
+            transform:scale(20px 20px 20px);
+            transition: all 0.5s ease;
+        }
+        tr{
+            border: 2px solid var(--accent-color);
+        }
+        tbody tr:nth-child(odd) {
+            background-color: rgba(218, 2, 66, 0.4);
+          }
+    }
+}
+
+#form_container{
+    /* border: 2px solid var(--line-clr); */
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+}
+#form_container > form{
+    width: 60%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid var(--accent-color);
+    border-radius: 5px;
+}
+.form-label{
+    color: var(--text-color);
+    font-size: 20px;
+}
+.form-text{
+    color: var(--text-color);
+    font-size: 16px;
+}
+.button{
+    padding: 10px 20px 10px 20px;
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    font-size: 18px;
+    border-radius: 5px;
+}
+#form_button{
+    align-self: flex-end;
+}
+
+#float_container_1{
+    background-color: var(--base-color);
+}
+#float_container_1 > input{
+    background-color: rgba(17, 24, 39, 0.8);
+    color:var(--text-color);
+    height: 65px;
+}
+#label_float_1,#label_float_2{
+    color: var(--text-color);
+}
+
+#float_container_2{
+    background-color: var(--base-color);
+}
+#float_container_2 > span{
+    background-color: var(--accent-color);
+    border-right:none;
+    font-size: 20px;
+}
+#float_container_2 > .form-floating > input{
+    background-color: var(--base-color);
+    color: var(--text-color);
+    border-left: none;
+}
+
+
+
+@media (max-width: 661px){
+    body{
+        width: 100%;
+        background-color: var(--base-color);
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .nav_parent{
+        z-index: 2;
+        width: 100%;
+        height: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--accent-color);
+        bottom: 0;
+        position: fixed;
+        scrollbar-gutter: stable;
+    }
+    #nav_block{
+        height: inherit;
+        width: 661px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        column-gap: 50px;
+        padding: 0px 10px 0px 10px;
+    }
+    #nav_block{
+        display: grid;
+        grid-auto-flow: column;
+        overflow-x: scroll;        
+    }
+
+    #nav_block::-webkit-scrollbar {
+        height: 6px;
+        width: 100%;
+        border-radius: 10px;
+    }
+    #nav_block::-webkit-scrollbar-track {
+        background-color: var(--base-clr);
+    }
+    #nav_block::-webkit-scrollbar-thumb {
+        background-color: var(--line-clr);
+        border-radius: 10px;
+        padding: 1px;
+    }
+
+    .section{
+        width: 60px;
+        height: 50px;
+        border-radius: 10px;
+        position: relative;
+        display: flex;
+        justify-content: space-around;
+        align-items: start;
+        padding: 3px;
+        border: 1px solid var(--text-color);
+        /* margin:0px 10px 0px 10px; */
+    }
+    .section > a{
+        display: inline-block;
+    }
+    .icons{
+        font-size: 27px;  
+    } 
+    .section::after{
+        color: inherit;
+        text-align: center;
+        font-size: 14px;
+        border-radius: 10px;
+        bottom: 2px;
+    }
+    .active:after{
+        color: var(--accent-color);
+    }
+}
+
+@media (min-width: 662px) and (max-width: 999px){
+    body{
+        width: 100%;
+        background-color: var(--base-color);
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .nav_parent{
+        z-index: 2;
+        width: 100%;
+        height: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--accent-color);
+        bottom: 0;
+        position: fixed;
+    }
+    #nav_block{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 5px;
+    }
+    .section{
+        width: 80px;
+        height: 70%;
+        border-radius: 10px;
+        position: relative;
+        display: flex;
+        justify-content: space-around;
+        align-items: start;
+        padding: 5px 10px 5px 10px; 
+    }
+    .icons{
+        font-size: 30px; 
+    } 
+    .section::after{
+        color: inherit;
+        text-align: center;
+        font-size: 18px;
+        bottom: 0px;
+    }
+    .active:after{
+        color: var(--accent-color);
+    }
+}
+
+@media (min-width: 1000px) and (max-width: 1484px){
+    body{
+        min-height: 100vh;
+        min-width: 100%;
+        background-color: var(--base-color);
+        display: grid;
+        grid-template-columns: auto 1fr;  
+    }
+    .nav_parent{
+        position: sticky;
+        top: 0;
+        align-self: start;
+        width: 100px;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--accent-color);
+    }
+    #nav_block{
+        height: 50%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .icons{
+        font-size: 35px;  
+    } 
+    .section{
+        width: 60%;
+        height: 13%;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px 10px 5px 10px; 
+    }
+    .section::after{
+        content: "";
+        position: absolute; 
+        font-size: 25px;
+        z-index: 2;
+        padding: 5px;
+        background-color: var(--text-color);
+        opacity: 0;
+    }
+    .section:hover::after{
+        opacity: 1;
+        transition: none;
+    }
+    #section_1:hover::after{
+        right: -165%;
+        content: " Home";
+    }
+    #section_2:hover::after{
+        right: -160%;
+        content: " Stack";
+    }
+    #section_3:hover::after{
+        right: -155%;
+        content: " Code";
+    }
+    #section_4:hover::after{
+        width:auto;
+        right: -160%;
+        content: "log in";
+    }
+    #section_5:hover::after{
+        right: -198%;
+        content: " Settings";
+    }
+}
+ @media (min-width: 1485px){
+    body{
+        min-height: 100vh;
+        min-width: 100%;
+        background-color: var(--base-color);
+        display: grid;
+        grid-template-columns: auto 1fr;  
+    }
+    .nav_parent{
+        position: sticky;
+        top: 0;
+        align-self: start;
+        width: 250px;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--accent-color);
+    }
+    #nav_block{
+        height: 50%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .section{
+        width: calc(100% - 10px*4);
+        height: 13%;
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px 10px 5px 10px; 
+    }
+    .section::after{
+        right: 5px;
+        font-size: 25px;
+        padding: 5px;
+    }
+    .icons{
+        font-size: 40px;  
+    } 
+    .active:after{
+        color: var(--accent-color);
+    }
+}

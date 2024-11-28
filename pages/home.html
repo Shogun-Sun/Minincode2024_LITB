@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script> 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogAIdc5N3HI=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="/public/css/nav.css">
+    <link rel="stylesheet" href="/public/css/home.css">
+
+
+</head>
+    <body>
+        <nav class="nav_parent">
+            <div id="nav_block">
+                <div class="section" id="section_1">
+                    <a href="#">
+                        <i class="bi bi-house-fill icons"></i>
+                    </a>
+                </div>
+                <div class="section" id="section_2">
+                    <a href="#">
+                        <i class="bi bi-stack icons"></i>
+                    </a>
+                </div>
+                <div class="section active" id="section_3">
+                    <a href="#">
+                        <i class="bi bi-fingerprint icons"></i>
+                    </a>
+                </div>
+                <div class="section" id="section_4">
+                    <a href="#">
+                        <i class="bi bi-code-slash icons"></i>
+                    </a>
+                </div>
+                <div class="section" id="section_5">
+                    <a href="#">
+                        <i class="bi bi-sliders2 icons"></i>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <main>
+            <div class="container" id="avatar">
+                <h2>Новый стиль загрузки аватарки</h2>
+                <p>
+                    <label for="test_input" id="avatar_label">
+                        <img src="D:\фоны\аватарка шамана.jpg" alt="картинка">
+                        <input type="file" value="" id="test_input">
+                    </label>
+                </p>    
+            </div>
+            <div class="container" id="table_container">
+                <h2>Таблица</h2>
+                <div id="tb">
+                    <table>
+                        <caption>Имя таблицы</caption>
+                        <thead>
+                          <tr>
+                            <th>Загаловок 1</th>
+                            <th>Заголовок 2</th>
+                            <th>Заголовок 3</th>
+                            <th>Заголовок 4</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>поле</td>
+                            <td>поле</td>
+                            <td>поле</td>
+                            <td>поле</td>
+                          </tr>
+                          <tr>
+                            <td>поле</td>
+                            <td>поле</td>
+                            <td>поле</td>
+                            <td>поле</td>
+                          </tr>
+                          <tr>
+                            <td>поле</td>
+                            <td>поле</td>
+                            <td>поле</td>
+                            <td>поле</td>
+                          </tr>
+                          <tr>
+                            <td>поле</td>
+                            <td>поле</td>
+                            <td>поле</td>
+                            <td>поле</td>
+                          </tr>
+                          <tr>
+                            <td>поле</td>
+                            <td>поле</td>
+                            <td>поле</td>
+                            <td>поле</td>
+                          </tr>
+                          <tr>
+                            <td>поле</td>
+                            <td>поле</td>
+                            <td>поле</td>
+                            <td>поле</td>
+                          </tr>
+                          <tr>
+                            <td>поле</td>
+                            <td>поле</td>
+                            <td>поле</td>
+                            <td>поле</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint assumenda nobis labore cumque, exercitationem et, sed harum earum facere a tempore aut architecto, unde culpa tenetur? Velit vel sed deserunt?</p>
+            </div>
+            <div class="container">
+              <h2>Form</h2>
+                <div id="form_container">
+                  <form>
+                    <!-- <div class="mb-3">
+                      <label for="exampleInputEmail1 text-ligth" class="form-label">Адрес электронной почты</label>
+                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                      <div id="emailHelp" class="form-text">Мы никогда никому не передадим вашу электронную почту.</div>
+                    </div> -->
+                    
+                    <div class="form-floating mb-3" id="float_container_1">
+                      <input type="email" class="form-control" id="floatingInput_1" placeholder="name@example.com">
+                      <label for="floatingInput" id="label_float_1">Адрес электронной почты</label>
+                    </div>
+    
+                    <div class="input-group mb-3" id="float_container_2">
+                      <span class="input-group-text ">@</span>
+                      <div class="form-floating">
+                        <input type="text" class="form-control " id="float_input_2" placeholder="Имя пользователя">
+                        <label for="float_input" id="label_float_2" class="h-100">Имя пользователя</label>
+                      </div>
+                    </div>
+    
+                    <button type="submit" class="button" id="form_button">Отправить</button>
+                  </form>
+                </div>
+            </div>
+            <div class="container">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint assumenda nobis labore cumque, exercitationem et, sed harum earum facere a tempore aut architecto, unde culpa tenetur? Velit vel sed deserunt?</p>
+            </div>
+            <div class="container">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae sed adipisci neque quas perferendis vero repellat voluptates excepturi, inventore ea tempore aliquam eveniet assumenda dolorem. Rerum cum totam, praesentium distinctio laborum voluptatem nobis nulla natus odio ab dicta maxime temporibus dolores nesciunt soluta dolorum. Eius, cupiditate. Cupiditate aliquid tempora, deleniti enim dolore esse, odio officiis aliquam debitis maiores itaque. Aut fugit iusto ipsum eos vero, laboriosam exercitationem laudantium, ad hic quod error porro consequatur voluptatem reiciendis molestias fuga ut itaque veniam facere. Iste consectetur laborum, reiciendis facere quo culpa alias voluptatibus corrupti magnam vero cupiditate commodi sequi, doloremque, ex consequuntur nostrum quibusdam tempora. Dolorem dolorum repellat velit reiciendis nobis illo eveniet cupiditate omnis id in quisquam ducimus accusantium recusandae vero odio provident temporibus fugiat commodi placeat, minima eaque? Iste provident aspernatur, quam, distinctio praesentium natus, laudantium accusantium velit corrupti fuga quisquam libero rem enim accusamus atque rerum omnis iure consectetur! Totam deserunt nesciunt quo voluptatibus. A autem sapiente tempore dolores at molestiae culpa debitis facilis ipsam et. Impedit quisquam et suscipit quibusdam ea reiciendis recusandae nobis quia, magni cum dolorum quis ab. Nihil harum soluta expedita tenetur molestiae sapiente sequi, adipisci, rerum ab, accusamus cum culpa. Placeat nostrum quis hic.</p>
+            </div>
+        </main>
+        
+    </body>
+</html>
