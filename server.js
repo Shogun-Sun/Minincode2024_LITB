@@ -1,8 +1,12 @@
 const express = require("express");
 const app = express();
+const router = require("./server_modules/pageRouter");
+const path = require("path");
 
+app.use(express.static(path.join(__dirname, "public")));
+app.use(router);
 
-const PORT = 3000;
-app.listen(PORT, () => {
+ 
+app.listen(3000, () => {
     console.log("Server запущен");
 })
