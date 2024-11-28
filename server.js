@@ -129,6 +129,11 @@ app.post("/user/log/data", async (req, res) => {
   }
 });
 
+app.post("/organization/log/data", async (req, res) => {
+    const {email, password} = req.body;
+    console.log(email, password);
+})
+
 app.post("/organization/reg/data", async (req, res) => {
   const { name, email, phone, address, ogrn, password } = req.body;
   if (name && email && phone && address && ogrn && password) {
