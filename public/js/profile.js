@@ -29,9 +29,9 @@ document.addEventListener("DOMContentLoaded", () => {
         profileContainer.setAttribute('id','prof_container')
         // Аватар и текст приветствия
         profileContainer.appendChild(avatar_container);
-        document.querySelector('main').appendChild(profileContainer)
+        document.querySelector('#avatar').appendChild(profileContainer)
 
-        document.querySelector("main").appendChild(avatar_container);
+        document.querySelector("#avatar").appendChild(avatar_container);
 
         fileInput.addEventListener("change", (e) => {
             const formData = new FormData();
@@ -60,6 +60,35 @@ document.addEventListener("DOMContentLoaded", () => {
               });
             }
           });
+        console.log(data.data.role)
+        if (data.data.role === "user") {
+            let name = document.createElement("p");
+            let surname = document.createElement("p");
+            let middle_name = document.createElement("p");
+            let email = document.createElement("p");
+            let sections = document.createElement("div");
+            let events = document.createElement("div")
+
+            document.querySelector("#name").textContent = `Приветствую ${data.data.name}`;
+            name.textContent = `Имя: ${data.data.name}`;
+            surname.textContent = `Фамилия: ${data.data.surname}`;
+            middle_name.textContent = `Отчество: ${data.data.middle_name}`;
+            email.textContent = `Электронная почта: ${data.data.email}`;
+
+            document.querySelector("#contactInfo").append(name, surname, middle_name, email, sections, events);
+            
+        } else if (data.data.role === "organisation") {
+	    let ogrn = document.createElement("p");
+	    let address = document.createElement("p");
+	    let work_time = document.createElement("p");
+	    let email = document.createElement("p");
+	    let phone = document.createElement("p");
+	    let status = document.createElement("p");
+
+	    document.querySelector("#name").textContent = data.data.organization_name;
+
+	    document.querySelector("#contactInfo").append(ogrn, address, work_time, email, phone, status);
+        }
       }
     })
     .catch((error) => {});
