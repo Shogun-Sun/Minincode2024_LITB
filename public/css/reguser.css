@@ -24,4 +24,16 @@
 }
 
 @media (min-width: 1485px){
+    main{
+        background-color: var(--base-color);
+        display: flex;
+        justify-content: center;
+        height: 100vh;
+    }
+    .block{
+        width: 500px;
+    }
+    .form-floating{
+        width: 500px;
+    }
 }
