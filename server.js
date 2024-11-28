@@ -178,6 +178,28 @@ app.get("/organization/getunverified/data", async (req, res) => {
   });
   res.status(200).json({ status: "ok", data: data });
 });
+app.put("/organization/getunverified/update", async (req, res) => {
+  const { ogrn } = req.body;
+
+  try {
+    const organization = await Organization.update(
+      { confirmed: true },
+      {
+        where: { ogrn: ogrn },
+      }
+    );
+
+    if (organization[0] === 0) {
+      return res.status(400).json({ message: "Организация не найдена" });
+    }
+
+    res.status(200).json({ message: "Статус обновлен" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Ошибка при обновлении" });
+  }
+});
+
 app.get("/organization/getverified/data", async (req, res) => {
   const data = await Organization.findAll({
     where: {
@@ -197,8 +219,8 @@ app.get("/user/get/data", (req, res) => {
       role: req.session.user.role,
     };
     res.status(200).json({ data });
-  } else{
-    res.status(400).json({status: "error", message: "Вы не авторизовались"});
+  } else {
+    res.status(400).json({ status: "error", message: "Вы не авторизовались" });
   }
 });
 app.listen(3000, () => {

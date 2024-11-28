@@ -48,13 +48,13 @@ fetch("/organization/getunverified/data", {
       agree.onclick = (elem) => {
         if (elem.target.classList.contains("accept")) {
           console.log({id: org.id, status: 'save', organization: org})
-        // fetch("", {
-        //   method: "POST",
-        //   headers: {
-        //       "Content-Type": "application/json",
-        //   },
-        //   body: JSON.stringify({status: "save", organization: org})
-        // })
+        fetch("/organization/getunverified/update", {
+          method: "PUT",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({status: "save", ogrn: org.ogrn})
+        })
         } else if (elem.target.classList.contains("reject")) {
           console.log({id:org.id, status: 'delete'})
           // fetch("", {
