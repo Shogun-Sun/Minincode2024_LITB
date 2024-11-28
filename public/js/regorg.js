@@ -1,5 +1,14 @@
 regForm = {};
 document.querySelector("#send").onclick = () => {
+    let first_password = document.querySelector("#first_password").value
+    let second_password = document.querySelector("#second_password").value
+    if (first_password !== second_password) {
+        alert("Пароли не совпадают");
+    } else {
+        sendOrgData();
+    }
+};
+function sendOrgData() {
     regForm.regname = document.querySelector("#regname").value;
     regForm.mail = document.querySelector("#mail").value;
     regForm.phone = document.querySelector("#phone").value;
@@ -15,4 +24,4 @@ document.querySelector("#send").onclick = () => {
     })
       .then(res => res.json)
       .then(data => console.log(data))
-};
+}
