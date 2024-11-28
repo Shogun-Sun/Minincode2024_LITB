@@ -4,13 +4,16 @@ const app = express();
 const router = require("./public/pageRouter");
 const bodyparser = require("body-parser");
 const { sequelize, User, Organization } = require("./server/database");
+const session = require("./server/session");
 
 const hash = require("bcrypt");
 const salt = hash.genSaltSync(13);
 
 app.use(bodyparser.json());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(session);
 app.use(router);
+
 
 app.post("/user/reg/data", async (req, res) => {
   const { name, surname, middle_name, email, password } = req.body;
@@ -66,8 +69,55 @@ app.post("/user/reg/data", async (req, res) => {
   }
 });
 
+app.post("/user/log/data", async (req, res) => {
+  const { email, password } = req.body;
+  if (req.session.user) {
+    return res
+      .status(400)
+      .json({ status: "error", message: "Пользователь уже авторизован" });
+  }
+
+  if (email && password) {
+    try {
+      const user = await User.findOne({
+        where: { email: email },
+      });
+
+      if (!user) {
+        return res
+          .status(400)
+          .json({ status: "error", message: "Неверный email или пароль" });
+      }
+
+      const isMath = hash.compareSync(password, user.password);
+      if (isMath) {
+        req.session.user = {
+          surname: user.surname,
+          name: user.name,
+          middle_name: user.middle_name,
+          email: user.email,
+          role: user.role,
+        };
+        res.status(200).json({ status: "ok", message: "Успешный вход" });
+      } else {
+        return res
+          .status(400)
+          .json({ status: "error", message: "Неверный email или пароль" });
+      }
+
+    } catch (error) {
+      console.error(error);
+      res
+        .status(500)
+        .json({ status: "error", message: "Произошла неизвестная ошибка" });
+    }
+  } else{
+    res.status(400).json({status: "error", message: "Вы ввели не все данные"});
+  }
+});
+
 app.post("/organization/reg/data", async (req, res) => {
-  const { name, email, phone, address, ogrn, password} = req.body;
+  const { name, email, phone, address, ogrn, password } = req.body;
   if (name && email && phone && address && ogrn && password) {
     const hash_password = hash.hashSync(password, salt);
     try {
@@ -78,14 +128,13 @@ app.post("/organization/reg/data", async (req, res) => {
       });
       if (!email_in_table) {
         await Organization.create({
-            ogrn: ogrn,
-            address: address,
-            email: email,
-            phone: phone,
-            organization_name: name,
-            password: hash_password,
-
-          });
+          ogrn: ogrn,
+          address: address,
+          email: email,
+          phone: phone,
+          organization_name: name,
+          password: hash_password,
+        });
       } else {
         return res.status(400).json({
           status: "error",
@@ -93,9 +142,10 @@ app.post("/organization/reg/data", async (req, res) => {
         });
       }
 
-      res
-        .status(200)
-        .json({ status: "ok", message: "Организация успешно зарегестрирована" });
+      res.status(200).json({
+        status: "ok",
+        message: "Организация успешно зарегестрирована",
+      });
     } catch (err) {
       console.log(err);
       if (err.name === "SequelizeValidationError") {
@@ -121,15 +171,14 @@ app.post("/organization/reg/data", async (req, res) => {
   }
 });
 
-
 app.get("/organization/get/data", async (req, res) => {
-    const data = await Organization.findAll({
-        where: {
-            confirmed: false,
-        }
-    });
-    res.status(200).json({status: "ok", data: data});
-})
+  const data = await Organization.findAll({
+    where: {
+      confirmed: false,
+    },
+  });
+  res.status(200).json({ status: "ok", data: data });
+});
 
 app.listen(3000, () => {
   console.log("Server запущен");
