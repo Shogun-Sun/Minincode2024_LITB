@@ -71,9 +71,12 @@ const Organization = sequelize.define(
       type: DataTypes.STRING(255),
       allowNull: false,
     },
-    mail: {
+    email: {
       type: DataTypes.STRING(100),
       allowNull: false,
+      validate: {
+        isEmail: true,
+      },
     },
     phone: {
       type: DataTypes.STRING(20),
@@ -105,4 +108,4 @@ sequelize
     console.log("Ошибка при подключении:", error);
   });
 
-module.exports = { User, sequelize };
+module.exports = { User, Organization, sequelize };

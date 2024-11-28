@@ -3,7 +3,7 @@ const path = require("path");
 const app = express();
 const router = require("./public/pageRouter");
 const bodyparser = require("body-parser");
-const { sequelize, User } = require("./server/database");
+const { sequelize, User, Organization } = require("./server/database");
 
 const hash = require("bcrypt");
 const salt = hash.genSaltSync(13);
@@ -67,8 +67,8 @@ app.post("/user/reg/data", async (req, res) => {
 });
 
 app.post("/organization/reg/data", async (req, res) => {
-  const { name, email, phone, address, orgn } = req.body;
-  if (name && email && phone && address && orgn) {
+  const { name, email, phone, address, ogrn, password} = req.body;
+  if (name && email && phone && address && ogrn && password) {
     const hash_password = hash.hashSync(password, salt);
     try {
       const email_in_table = await User.findOne({
@@ -76,10 +76,16 @@ app.post("/organization/reg/data", async (req, res) => {
           email: email,
         },
       });
-
       if (!email_in_table) {
-        
-        
+        await Organization.create({
+            ogrn: ogrn,
+            address: address,
+            email: email,
+            phone: phone,
+            organization_name: name,
+            password: hash_password,
+
+          });
       } else {
         return res.status(400).json({
           status: "error",
@@ -89,7 +95,7 @@ app.post("/organization/reg/data", async (req, res) => {
 
       res
         .status(200)
-        .json({ status: "ok", message: "Вы успешно зарегистрированы" });
+        .json({ status: "ok", message: "Организация успешно зарегестрирована" });
     } catch (err) {
       console.log(err);
       if (err.name === "SequelizeValidationError") {
