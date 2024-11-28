@@ -4,6 +4,8 @@ document.querySelector("#register").onclick = () => {
   let second_password = document.querySelector("#second_password").value;
   if (first_password !== second_password) {
     alert("Пароли не совпадают");
+    document.querySelector("#first_password").classList.add('is-invalid');
+    document.querySelector("#second_password").classList.add('is-invalid');
   } else {
     sendData();
   }
