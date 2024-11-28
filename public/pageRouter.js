@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const router = express.Router();
+const {checkRole} = require("../server/checkRole");
 
 router.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../pages", "home.html"));
@@ -17,5 +18,8 @@ router.get("/organization/reg/page", (req, res) => {
 router.get("/moderationorg", (req, res) => {
   res.sendFile(path.join(__dirname, "../pages", "moderationorg.html"));
 });
+router.get("/user/profile", (req, res) => {
+  res.sendFile(path.join(__dirname, "../pages", "profile.html"));
+})
 
 module.exports = router;

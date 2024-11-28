@@ -95,6 +95,11 @@ const Organization = sequelize.define(
       allowNull: false,
       defaultValue: false, 
     },
+    work_time: {
+      type: DataTypes.STRING(255),
+      allowNull: false,
+
+    }
   },
   {
     tableName: "organizations",

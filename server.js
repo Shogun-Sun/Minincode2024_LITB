@@ -14,7 +14,6 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(session);
 app.use(router);
 
-
 app.post("/user/reg/data", async (req, res) => {
   const { name, surname, middle_name, email, password } = req.body;
   if (name && surname && email && password) {
@@ -76,7 +75,6 @@ app.post("/user/log/data", async (req, res) => {
       .status(400)
       .json({ status: "error", message: "Пользователь уже авторизован" });
   }
-
   if (email && password) {
     try {
       const user = await User.findOne({
@@ -104,15 +102,16 @@ app.post("/user/log/data", async (req, res) => {
           .status(400)
           .json({ status: "error", message: "Неверный email или пароль" });
       }
-
     } catch (error) {
       console.error(error);
       res
         .status(500)
         .json({ status: "error", message: "Произошла неизвестная ошибка" });
     }
-  } else{
-    res.status(400).json({status: "error", message: "Вы ввели не все данные"});
+  } else {
+    res
+      .status(400)
+      .json({ status: "error", message: "Вы ввели не все данные" });
   }
 });
 
@@ -180,6 +179,20 @@ app.get("/organization/get/data", async (req, res) => {
   res.status(200).json({ status: "ok", data: data });
 });
 
+app.get("/user/get/data", (req, res) => {
+  if (req.session.user) {
+    const data = {
+      surname: req.session.user.surname,
+      name: req.session.user.name,
+      middle_name: req.session.user.middle_name,
+      email: req.session.user.email,
+      role: req.session.user.role,
+    };
+    res.status(200).json({ data });
+  } else{
+    res.status(400).json({status: "error", message: "Вы не авторизовались"});
+  }
+});
 app.listen(3000, () => {
   console.log("Server запущен");
 });
