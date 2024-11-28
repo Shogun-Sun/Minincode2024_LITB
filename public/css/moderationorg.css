@@ -1,0 +1,91 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial;
+    text-decoration: none;
+    outline: none;
+    border: none;
+}
+:root{
+    --text-color:rgb(255, 255, 255); 
+    --accent-color: rgb(218, 2, 66);
+    --base-color:  rgb(17, 24, 39);
+    --line-clr: rgb(66, 67, 74);
+    --secondary-text-color: rgb(201, 201, 201);
+}
+@media (max-width: 661px){
+    
+}
+
+@media (min-width: 662px) and (max-width: 999px){
+    
+}
+
+@media (min-width: 1000px) and (max-width: 1484px){
+    
+}
+
+@media (min-width: 1485px){
+    main{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--base-color);
+        height: min(100vh);
+    }
+    #tb{
+        padding: 30px;
+        color: var(--text-color);
+        border: 1px solid var(--line-clr);
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        font-size: 18px;
+        caption{
+            font-size: 14px;
+            color: var(--text-color);
+            text-align: center;
+        }
+        table{
+            width: 70%;
+            border-collapse: collapse;
+            border: 2px solid var(--accent-color);
+            position: relative;
+            th, td{
+                width: 300px;
+                padding: 10px;
+                text-align: center;
+            }
+            th{
+                position: -webkit-sticky;
+                position: sticky;
+                top: 0;
+                z-index: 1;
+                background-color: var(--base-color);
+            }
+            tr{
+                border: 2px solid var(--accent-color);
+            }
+            .confirm{
+                display: flex;
+                justify-content: space-around;
+            }
+            tbody tr:nth-child(odd) {
+                background-color: rgba(218, 2, 66, 0.4);
+              }
+        }
+    }
+    .button{
+        padding: 7px 15px 7px 15px;
+        background-color: var(--accent-color);
+        color: var(--text-color);
+        border-radius: 5px;
+        border:1px solid var(--accent-color);
+        transition: all 0.3s ease;
+    }
+    .button:hover{
+        background-color: var(--text-color);
+        color: var(--accent-color);
+        transition: all 0.3s ease;
+    }
+}

@@ -13,6 +13,7 @@ fetch("/organization/getunverified/data", {
       let OGRN = document.createElement("td");
       let orgName = document.createElement("td");
       let agree = document.createElement("td");
+      agree.classList.add('confirm')
       let accept = document.createElement("button");
       let reject = document.createElement("button");
       /* /объявление переменных */
@@ -26,7 +27,9 @@ fetch("/organization/getunverified/data", {
       orgName.setAttribute("data-bs-toggle", "modal")
       orgName.setAttribute("data-bs-target", "#exampleModal")
       accept.classList.add("accept")
+      accept.classList.add("button")
       reject.classList.add("reject")
+      reject.classList.add("button")
 
       /* /заполнение атрибутов */
       tr.onclick = () => {
