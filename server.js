@@ -5,6 +5,7 @@ const router = require("./public/pageRouter");
 const bodyparser = require("body-parser");
 const { sequelize, User, Organization } = require("./server/database");
 const session = require("./server/session");
+const fs = require("fs");
 
 const hash = require("bcrypt");
 const salt = hash.genSaltSync(13);
@@ -39,6 +40,15 @@ app.post("/user/reg/data", async (req, res) => {
           message: "Пользователь с такой почтой уже существует",
         });
       }
+
+      const id = await User.findOne({ where: { email: email }});
+      const avatar_img_path = path.join(__dirname, "users_data", "avatar.jpg");
+      const img_user_path = path.join(
+        __dirname,
+        "users_data",
+        `${id.id}.jpg`
+      );
+      fs.copyFileSync(avatar_img_path, img_user_path);
 
       res
         .status(200)
@@ -81,6 +91,8 @@ app.post("/user/log/data", async (req, res) => {
         where: { email: email },
       });
 
+      console.log(user.id);
+
       if (!user) {
         return res
           .status(400)
@@ -90,6 +102,7 @@ app.post("/user/log/data", async (req, res) => {
       const isMath = hash.compareSync(password, user.password);
       if (isMath) {
         req.session.user = {
+          id: user.id,
           surname: user.surname,
           name: user.name,
           middle_name: user.middle_name,
@@ -230,12 +243,20 @@ app.get("/organization/getverified/data", async (req, res) => {
 
 app.get("/user/get/data", (req, res) => {
   if (req.session.user) {
+    const avatar = path.join(
+        __dirname,
+        "users_data",
+        `${req.session.user.id}.jpg`
+      );
+      const data_avatar = fs.readFileSync(avatar);
+      const avatarbase64 = `data:image/jpeg;base64,${data_avatar.toString("base64")}`;
     const data = {
       surname: req.session.user.surname,
       name: req.session.user.name,
       middle_name: req.session.user.middle_name,
       email: req.session.user.email,
       role: req.session.user.role,
+      avatar: data_avatar,
     };
     res.status(200).json({ data });
   } else {

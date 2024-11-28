@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((res) => res.json())
     .then((data) => {
         if(data.status === "error"){
-            alert(data.message); 
+            console.log(data.avatar); 
         } else {
             console.log(data);
         }
