@@ -19,38 +19,40 @@
 </head>
 <body>
     <main>
-        <div class="block">
-            <div class="form-floating mb-3" id="float_container_1">
-                <input class="form-control" id="name" placeholder="">
-                <label for="name" id="name_float">Имя</label>
+        <div id="form_container">
+            <h2>Регистрация пользователя</h2>
+            <div id="form">  
+                <div class="form-floating mb-3" id="float_container_1">
+                    <input class="form-control" id="name" placeholder="">
+                    <label for="name" id="name_float">Имя</label>
+                </div>
+    
+                <div class="form-floating mb-3" id="float_container_2">
+                    <input class="form-control" id="surname" placeholder="">
+                    <label for="surname" id="surname_float">Фамилия</label>
+                </div>
+                
+                <div class="form-floating mb-3" id="float_container_3">
+                    <input class="form-control" id="middle_name" placeholder="">
+                    <label for="middle_name" id="middle_name_float">Отчество</label>
+                </div>
+    
+                <div class="form-floating mb-3" id="float_container_4">
+                    <input class="form-control"type="email" name="email" id="email" placeholder="">
+                    <label for="email" id="email_float">Адрес электронной почты</label>
+                </div>
+    
+                <div class="form-floating mb-3" id="float_container_5">
+                    <input class="form-control" name="password" id="first_password" placeholder="">
+                    <label  for="first_password" id="password_float">Пароль</label>
+                </div>
+    
+                <div class="form-floating mb-3" id="float_container_6">
+                    <input class="form-control" name="password" id="second_password" placeholder="">
+                    <label  for="second_password" id="password_float">Подтверждение пароля</label>
+                </div>
+                <button class="button" id="register">create</button>
             </div>
-
-            <div class="form-floating mb-3" id="float_container_2">
-                <input class="form-control" id="surname" placeholder="">
-                <label for="surname" id="surname_float">Фамилия</label>
-            </div>
-            
-            <div class="form-floating mb-3" id="float_container_3">
-                <input class="form-control" id="middle_name" placeholder="">
-                <label for="middle_name" id="middle_name_float">Отчество</label>
-            </div>
-
-            <div class="form-floating mb-3" id="float_container_4">
-                <input class="form-control"type="email" name="email" id="email" placeholder="">
-                <label for="email" id="email_float">Адрес электронной почты</label>
-            </div>
-
-            <div class="form-floating mb-3" id="float_container_5">
-                <input class="form-control" name="password" id="first_password" placeholder="">
-                <label  for="first_password" id="password_float">Пароль</label>
-            </div>
-
-            <div class="form-floating mb-3" id="float_container_6">
-                <input class="form-control" name="password" id="second_password" placeholder="">
-                <label  for="second_password" id="password_float">Подтверждение пароля</label>
-            </div>
-            
-            <button id="register">Зарегистрироваться</button>
         </div>
     </main>
     <script src="/js/reguser.js"></script>
