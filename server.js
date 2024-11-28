@@ -256,9 +256,9 @@ app.get("/user/get/data", (req, res) => {
       middle_name: req.session.user.middle_name,
       email: req.session.user.email,
       role: req.session.user.role,
-      avatar: data_avatar,
+      avatar: avatarbase64,
     };
-    res.status(200).json({ data });
+    res.status(200).json({ data: data });
   } else {
     res.status(400).json({ status: "error", message: "Вы не авторизовались" });
   }
