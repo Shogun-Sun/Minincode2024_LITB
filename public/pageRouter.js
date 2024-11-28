@@ -24,5 +24,8 @@ router.get("/moderationorg", (req, res) => {
 router.get("/user/profile", (req, res) => {
   res.sendFile(path.join(__dirname, "../pages", "profile.html"));
 })
+router.get("/organization/createsection", (req, res) => {
+  res.sendFile(path.join(__dirname, "../pages", "createsection.html"));
+})
 
 module.exports = router;
