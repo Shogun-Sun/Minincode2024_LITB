@@ -121,6 +121,12 @@ app.post("/organization/reg/data", async (req, res) => {
   }
 });
 
+
+app.get("/organization/get/data", async (req, res) => {
+    const data = await Organization.findAll();
+    res.status(200).json({status: "ok", data: data});
+})
+
 app.listen(3000, () => {
   console.log("Server запущен");
 });

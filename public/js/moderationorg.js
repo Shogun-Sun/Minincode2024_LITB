@@ -1,4 +1,4 @@
-fetch("", {
+fetch("/organization/get/data", {
     method: "GET",
     headers: {
         "Content-Type": "application/json",
@@ -12,5 +12,5 @@ fetch("", {
     let agree = document.createElement("td");
     let accept = document.createElement("button");
     let reject = document.createElement("button");
-    orgName.innerText = data.name;
+    //orgName.innerText = data.name;
   })
