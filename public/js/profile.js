@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
             let sections = document.createElement("div");
             let events = document.createElement("div");
             let change = document.createElement("button");
-
+                change.classList.add('button');
             change.innerText = "Сохранить изменения"
             change.onclick = () => {
                 let changeData = {};

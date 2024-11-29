@@ -13,6 +13,18 @@
     --line-clr: rgb(66, 67, 74);
     --secondary-text-color: rgb(201, 201, 201);
 }
+.button{
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border-radius: 5px;
+    border:1px solid var(--accent-color);
+    transition: all 0.3s ease;
+}
+.button:hover{
+    background-color: var(--text-color);
+    color: var(--accent-color);
+    transition: all 0.3s ease;
+}
 body{
     background-color: var(--base-color);
 }
@@ -29,7 +41,8 @@ label{
         object-fit: contain;
     }
 }
-#input_avatar{
+input[type=file]{
+    padding: 0px;
     height: 0;
     width: 0;
     overflow: hidden;
@@ -37,7 +50,7 @@ label{
 
 @media (max-width: 661px){
     main{
-        padding: 10px 20px 10px 20px;
+        padding: 20px 10px 10px 10px;
     }
     .container{
         border: 2px solid var(--line-clr);
@@ -61,6 +74,7 @@ label{
         text-align: center;
     }
     #contactInfo{
+        padding: 10px;
         display: flex;
         flex-direction: column;
     }
@@ -69,6 +83,27 @@ label{
         font-size: 16px;
         display: block;
         margin: 10px;
+    }
+    label{
+        display: block;
+        position: relative;
+        font-size: 20px;
+        color: var(--text-color);
+        margin: 20px 10px 15px 10px;
+    }
+    input{
+        border: 2px solid var(--base-color);
+        border-radius: 10px;
+        width: 90%;
+        padding: 10px;
+        font-size: 18px;
+        transition: all 0.5 ease;
+    }
+    .button{
+        margin-top: 14px;
+        align-self: flex-start;
+        font-size: 22px;
+        padding: 5px 10px 5px 10px;
     }
 }
 
@@ -98,6 +133,7 @@ label{
         text-align: center;
     }
     #contactInfo{
+        padding: 30px;
         display: flex;
         flex-direction: column;
     }
@@ -106,6 +142,27 @@ label{
         font-size: 20px;
         display: block;
         margin: 20px;
+    }
+    label{
+        display: block;
+        position: relative;
+        font-size: 20px;
+        color: var(--text-color);
+        margin: 20px 10px 15px 10px;
+    }
+    input{
+        border: 2px solid var(--base-color);
+        border-radius: 10px;
+        width: 500px;
+        padding: 10px;
+        font-size: 18px;
+        transition: all 0.5 ease;
+    }
+    .button{
+        margin-top: 20px;
+        align-self: flex-start;
+        font-size: 22px;
+        padding: 7px 13px 7px 13px;
     }
 }
 
@@ -135,6 +192,7 @@ label{
         text-align: center;
     }
     #contactInfo{
+        padding: 30px;
         display: flex;
         flex-direction: column;
     }
@@ -143,6 +201,27 @@ label{
         font-size: 25px;
         display: block;
         margin: 20px;
+    }
+    label{
+        display: block;
+        position: relative;
+        font-size: 20px;
+        color: var(--text-color);
+        margin: 20px 10px 15px 10px;
+    }
+    input{
+        border: 2px solid var(--base-color);
+        border-radius: 10px;
+        width: 500px;
+        padding: 10px;
+        font-size: 18px;
+        transition: all 0.5 ease;
+    }
+    .button{
+        margin-top: 20px;
+        align-self: flex-start;
+        font-size: 22px;
+        padding: 7px 13px 7px 13px;
     }
 }
 
@@ -172,6 +251,7 @@ label{
         text-align: center;
     }
     #contactInfo{
+        padding: 30px;
         display: flex;
         flex-direction: column;
     }
@@ -180,5 +260,26 @@ label{
         font-size: 25px;
         display: block;
         margin: 20px;
+    }
+    label{
+        display: block;
+        position: relative;
+        font-size: 20px;
+        color: var(--text-color);
+        margin: 20px 10px 15px 10px;
+    }
+    input{
+        border: 2px solid var(--base-color);
+        border-radius: 10px;
+        width: 500px;
+        padding: 10px;
+        font-size: 18px;
+        transition: all 0.5 ease;
+    }
+    .button{
+        margin-top: 20px;
+        align-self: flex-start;
+        font-size: 22px;
+        padding: 7px 13px 7px 13px;
     }
 }
