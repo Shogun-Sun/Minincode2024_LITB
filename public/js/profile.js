@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	    let status = document.createElement("p");
 
 	    document.querySelector("#name").textContent = data.data.organization_name;
-
+        
 	    document.querySelector("#contactInfo").append(ogrn, address, work_time, email, phone, status);
         }
       }
