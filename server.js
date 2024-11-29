@@ -8,7 +8,7 @@ const session = require("./server/session");
 const fs = require("fs");
 const upload = require("./server/fileUpload");
 const { v4: uuidv4 } = require("uuid");
-
+const limiter = require("./server/rateLimit");
 const hash = require("bcrypt");
 const salt = hash.genSaltSync(13);
 
@@ -16,8 +16,9 @@ app.use(bodyparser.json());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(session);
 app.use(router);
+app.use(limiter);
 
-app.post("/user/reg/data", async (req, res) => {
+app.post("/user/reg/data", limiter, async (req, res) => {
   const { name, surname, middle_name, email, password } = req.body;
   if (name && surname && email && password) {
     const hash_password = hash.hashSync(password, salt);
@@ -76,7 +77,7 @@ app.post("/user/reg/data", async (req, res) => {
   }
 });
 
-app.post("/user/log/data", async (req, res) => {
+app.post("/user/log/data", limiter, async (req, res) => {
   const { email, password } = req.body;
 
   if (req.session.user || req.session.organization) {
@@ -336,7 +337,7 @@ app.post("/logout", async (req, res) => {
   }
 });
 
-app.post("/profile/upload/avatar", upload.single("avatar"), (req, res) => {
+app.post("/profile/upload/avatar", limiter, upload.single("avatar"), (req, res) => {
   if (req.file) {
     res.status(200).json({ status: "ok", message: "аватар успешно загружен!" });
   } else {
@@ -386,7 +387,7 @@ app.get("/organization/get/data", (req, res) => {
   }
 });
 
-app.post("/sections/create", async (req, res) => {
+app.post("/sections/create", limiter, async (req, res) => {
   const { name, description, days, times, organization_id } = req.body;
   console.log(name, description, days, times, organization_id);
 
