@@ -156,6 +156,7 @@ const Section = sequelize.define('Section', {
   timestamps: false, 
 });
 
+// Устанавливаем соединение с базой данных и синхронизируем модели
 sequelize
   .authenticate()
   .then(() => {
