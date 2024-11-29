@@ -1,0 +1,248 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial;
+    text-decoration: none;
+    outline: none;
+    border: none;
+}
+:root{
+    --text-color:rgb(255, 255, 255); 
+    --accent-color: rgb(218, 2, 66);
+    --base-color:  rgb(17, 24, 39);
+    --line-clr: #42434a;
+    --secondary-text-color: rgb(201, 201, 201);
+}
+body{
+    background-color: var(--base-color);
+}
+.button{
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border-radius: 5px;
+    border:1px solid var(--accent-color);
+    transition: all 0.3s ease;
+}
+.button:hover{
+    background-color: var(--text-color);
+    color: var(--accent-color);
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 661px){
+    main{
+        padding: 20px 5px 5px 5px;
+        display: flex;
+        justify-content: center;
+    }
+    .container{
+        width: 96%;
+        border: 2px solid var(--line-clr);
+        border-radius: 10px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    h1{
+        font-size: 40x;
+        color: var(--text-color);
+    }
+    label{
+        font-size: 20px;
+        color: var(--text-color);
+        margin: 20px 10px 15px 10px;
+    }
+    input{
+        border: 2px solid var(--base-color);
+        border-radius: 10px;
+        height: 15px;
+        width: 90%;
+        padding: 10px;
+        font-size: 18px;
+        transition: all 0.5 ease;
+    }
+    textarea{
+        border: 2px solid var(--base-color);
+        border-radius: 10px;
+        resize: none;
+        height: 60px;
+        width: 90%;
+        padding: 10px;
+        font-size: 18px;
+        transition: all 0.5 ease;
+    }
+    .button{
+        margin-top: 10px;
+        align-self: flex-end;
+        font-size: 22px;
+        padding: 7px 13px 7px 13px;
+    }
+    input:focus, textarea:focus{
+        border: 2px solid var(--accent-color);
+        transition: all 0.5 ease;
+    }
+}
+
+@media (min-width: 662px) and (max-width: 999px){
+    main{
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+    }
+    .container{
+        width: 600px;
+        border: 2px solid var(--line-clr);
+        border-radius: 10px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    h1{
+        font-size: 50px;
+        color: var(--text-color);
+    }
+    label{
+        font-size: 24px;
+        color: var(--text-color);
+        margin: 20px 10px 15px 10px;
+    }
+    input{
+        border: 2px solid var(--base-color);
+        border-radius: 10px;
+        height: 15px;
+        width: 400px;
+        padding: 10px;
+        font-size: 20px;
+        transition: all 0.5 ease;
+    }
+    textarea{
+        border: 2px solid var(--base-color);
+        border-radius: 10px;
+        resize: none;
+        height: 60px;
+        width: 400px;
+        padding: 10px;
+        font-size: 20px;
+        transition: all 0.5 ease;
+    }
+    .button{
+        margin-top: 10px;
+        align-self: flex-end;
+        font-size: 22px;
+        padding: 7px 13px 7px 13px;
+    }
+    input:focus, textarea:focus{
+        border: 2px solid var(--accent-color);
+        transition: all 0.5 ease;
+    }
+}
+
+@media (min-width: 1000px) and (max-width: 1484px){
+    main{
+        padding: 30px;
+        display: flex;
+        justify-content: center;
+    }
+    .container{
+        width: 900px;
+        border: 2px solid var(--line-clr);
+        border-radius: 10px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    h1{
+        font-size: 60px;
+        color: var(--text-color);
+    }
+    label{
+        font-size: 24px;
+        color: var(--text-color);
+        margin: 20px 10px 15px 10px;
+    }
+    input{
+        border: 2px solid var(--base-color);
+        border-radius: 10px;
+        height: 15px;
+        width: 400px;
+        padding: 10px;
+        font-size: 20px;
+        transition: all 0.5 ease;
+    }
+    textarea{
+        border: 2px solid var(--base-color);
+        border-radius: 10px;
+        resize: none;
+        height: 60px;
+        width: 400px;
+        padding: 10px;
+        font-size: 20px;
+        transition: all 0.5 ease;
+    }
+    .button{
+        align-self: flex-end;
+        font-size: 22px;
+        padding: 7px 13px 7px 13px;
+    }
+    input:focus, textarea:focus{
+        border: 2px solid var(--accent-color);
+        transition: all 0.5 ease;
+    }
+}
+
+@media (min-width: 1485px){
+    main{
+        padding: 30px;
+        display: flex;
+        justify-content: center;
+    }
+    .container{
+        width: 1000px;
+        border: 2px solid var(--line-clr);
+        border-radius: 10px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    h1{
+        font-size: 60px;
+        color: var(--text-color);
+    }
+    label{
+        font-size: 24px;
+        color: var(--text-color);
+        margin: 20px 10px 15px 10px;
+    }
+    input{
+        border: 2px solid var(--base-color);
+        border-radius: 10px;
+        height: 15px;
+        width: 400px;
+        padding: 10px;
+        font-size: 20px;
+        transition: all 0.5 ease;
+    }
+    textarea{
+        border: 2px solid var(--base-color);
+        border-radius: 10px;
+        resize: none;
+        height: 60px;
+        width: 400px;
+        padding: 10px;
+        font-size: 20px;
+        transition: all 0.5 ease;
+    }
+    .button{
+        align-self: flex-end;
+        font-size: 22px;
+        padding: 7px 13px 7px 13px;
+    }
+    input:focus, textarea:focus{
+        border: 2px solid var(--accent-color);
+        transition: all 0.5 ease;
+    }
+}
