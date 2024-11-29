@@ -7,8 +7,37 @@ document.addEventListener("DOMContentLoaded", () => {
   })
     .then((res) => res.json())
     .then((data) => {
-        console.log(data.avatar);
+        console.log(data);
       if (data.status === "error") {
+        console.log(1)
+        fetch("/organization/get/data", {
+            method:"GET",
+            headers:{
+                "Content-Type": "application/json",
+            },
+        })
+          .then(res => res.json())
+          .then(data => {
+                console.log(data)
+                document.querySelector("#name").textContent = data.data.organization_name;
+                let email = document.createElement("p");
+                let sections = document.createElement("div");
+                let events = document.createElement("div");
+                let address = document.createElement("p");
+                let ogrn = document.createElement("p");
+                let phone = document.createElement("p");
+                let status = document.createElement("p")
+
+                email.textContent = `Электронная почта: ${data.data.email}`;
+                address.textContent = `Адрес: ${data.data.address}`;
+                ogrn.textContent = `Номер ОГРН: ${data.data.ogrn}`;
+                phone.textContent = `Телефон: ${data.data.phone}`;
+                status.textContent = `Статус: ${data.data.role}`;
+
+                document.querySelector("#contactInfo").append(email, phone, address, ogrn, status, sections, events);
+
+
+          })
       } else {
         const avatar = document.createElement("img");
         const fileInput = document.createElement("input");
@@ -56,22 +85,47 @@ document.addEventListener("DOMContentLoaded", () => {
           });
         console.log(data.data.role)
         if (data.data.role === "user") {
-            let name = document.createElement("p");
-            let surname = document.createElement("p");
-            let middle_name = document.createElement("p");
+            let nameLable = document.createElement("lable")
+            let name = document.createElement("input");
+            let surnameLable = document.createElement("lable");
+            let surname = document.createElement("input");
+            let middle_nameLable = document.createElement("lable");
+            let middle_name = document.createElement("input");
             let email = document.createElement("p");
             let sections = document.createElement("div");
-            let events = document.createElement("div")
+            let events = document.createElement("div");
+            let change = document.createElement("button");
 
+            change.innerText = "Сохранить изменения"
+            change.onclick = () => {
+                let changeData = {};
+                changeData.name = name.value;
+                changeData.surname = surname.value;
+                changeData.middle_name = middle_name.value;
+                console.log(changeData)
+
+                // fetch("/user/get/data", {
+                //     method: "POST",
+                //     headers: {
+                //       "Content-Type": "application/json",
+                //     },
+                //     body:JSON.stringify(changeData)
+                //   })
+                //     .then((res) => res.json())
+                //     .then((data) => {console.log(data)});
+            }
             document.querySelector("#name").textContent = `${data.data.name}`;
-            name.textContent = `Имя: ${data.data.name}`;
-            surname.textContent = `Фамилия: ${data.data.surname}`;
-            middle_name.textContent = `Отчество: ${data.data.middle_name}`;
+            nameLable.textContent = "Имя: "
+            name.value = data.data.name;
+            surnameLable.innerText = "Фамилия: "
+            surname.value = data.data.surname;
+            middle_nameLable.innerText = "Отчество: "
+            middle_name.value = data.data.middle_name;
             email.textContent = `Электронная почта: ${data.data.email}`;
 
-            document.querySelector("#contactInfo").append(name, surname, middle_name, email, sections, events);
+            document.querySelector("#contactInfo").append(nameLable, name, surnameLable, surname, middle_nameLable, middle_name, change, email, sections, events);
             
-        } else if (data.data.role === "organisation") {
+        } else {
 	    let ogrn = document.createElement("p");
 	    let address = document.createElement("p");
 	    let work_time = document.createElement("p");
@@ -80,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	    let status = document.createElement("p");
 
 	    document.querySelector("#name").textContent = data.data.organization_name;
-        
+
 	    document.querySelector("#contactInfo").append(ogrn, address, work_time, email, phone, status);
         }
       }
