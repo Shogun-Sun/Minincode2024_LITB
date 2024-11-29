@@ -8,7 +8,7 @@ fetch("/organization/getverified/data", {
   .then(data => {
     console.log(data.data);
     data.data.forEach((org) => {
-        console.log(org);
+        // console.log(org);
         let orgcard = document.createElement("div");
         orgcard.classList.add('card');
         let orgName = document.createElement("p");
@@ -31,7 +31,23 @@ fetch("/organization/getverified/data", {
             email.innerText = `Почта организации: ${org.email}`;
             contactInfo.append(orgAddres, phone, email);
             orgpage.append(orgName, contactInfo);
-            document.querySelector(".block").appendChild(orgpage);
+            let sectionsBlock = document.createElement("div")
+            console.log(org.ogrn);
+            fetch("/organization/get/sections", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ogrn: org.ogrn}),
+              })
+                .then((res) => res.json())
+                .then((dat) => {
+                    console.log(dat)
+                    // data.forEach((section) => {
+
+                    // })
+                })
+            document.querySelector(".block").append(orgpage, sectionsBlock);
         };
         orgcard.append(orgName, orgAddres, moreButton);
         document.querySelector("#organizations").appendChild(orgcard);

@@ -15,7 +15,7 @@ fetch("/organization/get/data", {
         data.times = document.querySelector("#times").value;
         data.organization_id = sesionData.data.ogrn;
         console.log(data);
-        fetch("/sesion/create", {
+        fetch("/sections/create", {
             method:"POST",
             headers:{
                 "Content-Type": "application/json",
