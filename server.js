@@ -81,7 +81,7 @@ app.post("/user/reg/data", async (req, res) => {
 
 app.post("/user/log/data", async (req, res) => {
   const { email, password } = req.body;
-  if (req.session.user) {
+  if (req.session.user || req.session.organization) {
     return res
       .status(400)
       .json({ status: "error", message: "Пользователь уже авторизован" });
@@ -131,7 +131,47 @@ app.post("/user/log/data", async (req, res) => {
 
 app.post("/organization/log/data", async (req, res) => {
     const {email, password} = req.body;
-    console.log(email, password);
+    if (req.session.organization || req.session.user) {
+        return res
+          .status(400)
+          .json({ status: "error", message: "Организация уже авторизована" });
+      }
+    if(email && password){
+        try {
+            const organization = await Organization.findOne({
+              where: { email: email,  confirmed: true},
+            });
+      
+            if (!organization) {
+              return res
+                .status(400)
+                .json({ status: "error", message: "Неверный email или пароль" });
+            }
+      
+            const isMath = hash.compareSync(password, organization.password);
+            if (isMath) {
+              req.session.organization = {
+                ogrn: organization.ogrn,
+                address: organization.address,
+                email: organization.email,
+                phone: organization.phone,
+                organization_name: organization.organization_name,                
+              }
+              res.status(200).json({ status: "ok", message: "Успешный вход" });
+            } else {
+              return res
+                .status(400)
+                .json({ status: "error", message: "Неверный email или пароль" });
+            }
+          } catch (error) {
+            console.error(error);
+            res
+              .status(500)
+              .json({ status: "error", message: "Произошла неизвестная ошибка" });
+          }
+    } else{
+        res.status(400).json({status: "error", message: "Вы ввели не все данные"});
+    }
 })
 
 app.post("/organization/reg/data", async (req, res) => {
