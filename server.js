@@ -7,7 +7,7 @@ const { sequelize, User, Organization, Section } = require("./server/database");
 const session = require("./server/session");
 const fs = require("fs");
 const upload = require("./server/fileUpload");
-const { v4: uuidv4 } = require('uuid');
+const { v4: uuidv4 } = require("uuid");
 
 const hash = require("bcrypt");
 const salt = hash.genSaltSync(13);
@@ -43,13 +43,9 @@ app.post("/user/reg/data", async (req, res) => {
         });
       }
 
-      const id = await User.findOne({ where: { email: email }});
+      const id = await User.findOne({ where: { email: email } });
       const avatar_img_path = path.join(__dirname, "users_data", "avatar.jpg");
-      const img_user_path = path.join(
-        __dirname,
-        "users_data",
-        `${id.id}.jpg`
-      );
+      const img_user_path = path.join(__dirname, "users_data", `${id.id}.jpg`);
       fs.copyFileSync(avatar_img_path, img_user_path);
 
       res
@@ -83,13 +79,11 @@ app.post("/user/reg/data", async (req, res) => {
 app.post("/user/log/data", async (req, res) => {
   const { email, password } = req.body;
 
-
   if (req.session.user || req.session.organization) {
     return res
       .status(400)
       .json({ status: "error", message: "Пользователь уже авторизован" });
   }
-
 
   if (email && password) {
     try {
@@ -103,13 +97,15 @@ app.post("/user/log/data", async (req, res) => {
           .json({ status: "error", message: "Неверный email или пароль" });
       }
 
-      const isMatch = hash.compareSync(password, user.password); 
+      const isMatch = hash.compareSync(password, user.password);
       if (isMatch) {
-
         if (user.session) {
           return res
             .status(400)
-            .json({ status: "error", message: "Пользователь уже авторизован в другой сессии" });
+            .json({
+              status: "error",
+              message: "Пользователь уже авторизован в другой сессии",
+            });
         }
 
         // Генерация уникального токена для сессии
@@ -125,7 +121,7 @@ app.post("/user/log/data", async (req, res) => {
           middle_name: user.middle_name,
           email: user.email,
           role: user.role,
-          session: sessionToken 
+          session: sessionToken,
         };
 
         return res.status(200).json({ status: "ok", message: "Успешный вход" });
@@ -148,50 +144,52 @@ app.post("/user/log/data", async (req, res) => {
 });
 
 app.post("/organization/log/data", async (req, res) => {
-    const {email, password} = req.body;
-    if (req.session.organization || req.session.user) {
+  const { email, password } = req.body;
+  if (req.session.organization || req.session.user) {
+    return res
+      .status(400)
+      .json({ status: "error", message: "Организация уже авторизована" });
+  }
+  if (email && password) {
+    try {
+      const organization = await Organization.findOne({
+        where: { email: email, confirmed: true },
+      });
+
+      if (!organization) {
         return res
           .status(400)
-          .json({ status: "error", message: "Организация уже авторизована" });
+          .json({ status: "error", message: "Неверный email или пароль" });
       }
-    if(email && password){
-        try {
-            const organization = await Organization.findOne({
-              where: { email: email,  confirmed: true},
-            });
-      
-            if (!organization) {
-              return res
-                .status(400)
-                .json({ status: "error", message: "Неверный email или пароль" });
-            }
-      
-            const isMath = hash.compareSync(password, organization.password);
-            if (isMath) {
-              req.session.organization = {
-                ogrn: organization.ogrn,
-                address: organization.address,
-                email: organization.email,
-                phone: organization.phone,
-                organization_name: organization.organization_name,       
-                role: organization.role,         
-              }
-              res.status(200).json({ status: "ok", message: "Успешный вход" });
-            } else {
-              return res
-                .status(400)
-                .json({ status: "error", message: "Неверный email или пароль" });
-            }
-          } catch (error) {
-            console.error(error);
-            res
-              .status(500)
-              .json({ status: "error", message: "Произошла неизвестная ошибка" });
-          }
-    } else{
-        res.status(400).json({status: "error", message: "Вы ввели не все данные"});
+
+      const isMath = hash.compareSync(password, organization.password);
+      if (isMath) {
+        req.session.organization = {
+          ogrn: organization.ogrn,
+          address: organization.address,
+          email: organization.email,
+          phone: organization.phone,
+          organization_name: organization.organization_name,
+          role: organization.role,
+        };
+        res.status(200).json({ status: "ok", message: "Успешный вход" });
+      } else {
+        return res
+          .status(400)
+          .json({ status: "error", message: "Неверный email или пароль" });
+      }
+    } catch (error) {
+      console.error(error);
+      res
+        .status(500)
+        .json({ status: "error", message: "Произошла неизвестная ошибка" });
     }
-})
+  } else {
+    res
+      .status(400)
+      .json({ status: "error", message: "Вы ввели не все данные" });
+  }
+});
 
 app.post("/organization/reg/data", async (req, res) => {
   const { name, email, phone, address, ogrn, password } = req.body;
@@ -308,7 +306,9 @@ app.get("/organization/getverified/data", async (req, res) => {
 
 app.post("/logout", async (req, res) => {
   if (!req.session.user) {
-    return res.status(400).json({ status: "error", message: "Вы не авторизованы" });
+    return res
+      .status(400)
+      .json({ status: "error", message: "Вы не авторизованы" });
   }
   const userId = req.session.user.id;
   try {
@@ -316,37 +316,47 @@ app.post("/logout", async (req, res) => {
 
     req.session.destroy((err) => {
       if (err) {
-        return res.status(500).json({ status: "error", message: "Ошибка при выходе" });
+        return res
+          .status(500)
+          .json({ status: "error", message: "Ошибка при выходе" });
       }
-      
-      res.status(200).json({ status: "ok", message: "Вы успешно вышли из системы" });
+
+      res
+        .status(200)
+        .json({ status: "ok", message: "Вы успешно вышли из системы" });
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ status: "error", message: "Произошла ошибка при удалении сессии из базы данных" });
+    res
+      .status(500)
+      .json({
+        status: "error",
+        message: "Произошла ошибка при удалении сессии из базы данных",
+      });
   }
 });
 
-
 app.post("/profile/upload/avatar", upload.single("avatar"), (req, res) => {
-    if (req.file) {
-      res.status(200).json({ status: "ok", message: "аватар успешно загружен!" });
-    } else {
-      res.status(400).json({
-        status: "error",
-        message: "Ошибка загрузки аватара, попробуйте еще раз",
-      });
-    }
-  });
+  if (req.file) {
+    res.status(200).json({ status: "ok", message: "аватар успешно загружен!" });
+  } else {
+    res.status(400).json({
+      status: "error",
+      message: "Ошибка загрузки аватара, попробуйте еще раз",
+    });
+  }
+});
 app.get("/user/get/data", (req, res) => {
   if (req.session.user) {
     const avatar = path.join(
-        __dirname,
-        "users_data",
-        `${req.session.user.id}.jpg`
-      );
-      const data_avatar = fs.readFileSync(avatar);
-      const avatarbase64 = `data:image/jpeg;base64,${data_avatar.toString("base64")}`;
+      __dirname,
+      "users_data",
+      `${req.session.user.id}.jpg`
+    );
+    const data_avatar = fs.readFileSync(avatar);
+    const avatarbase64 = `data:image/jpeg;base64,${data_avatar.toString(
+      "base64"
+    )}`;
     const data = {
       surname: req.session.user.surname,
       name: req.session.user.name,
@@ -361,25 +371,25 @@ app.get("/user/get/data", (req, res) => {
   }
 });
 app.get("/organization/get/data", (req, res) => {
-    if(req.session.organization){
-        const data = {
-                ogrn: req.session.organization.ogrn,
-                address: req.session.organization.address,
-                email: req.session.organization.email,
-                phone: req.session.organization.phone,
-                organization_name: req.session.organization.organization_name,     
-                role: req.session.organization.role           
-          };
-          res.status(200).json({ data: data });
-    } else {
-      res.status(400).json({ status: "error", message: "Вы не авторизовались" });
-    }
-})
+  if (req.session.organization) {
+    const data = {
+      ogrn: req.session.organization.ogrn,
+      address: req.session.organization.address,
+      email: req.session.organization.email,
+      phone: req.session.organization.phone,
+      organization_name: req.session.organization.organization_name,
+      role: req.session.organization.role,
+    };
+    res.status(200).json({ data: data });
+  } else {
+    res.status(400).json({ status: "error", message: "Вы не авторизовались" });
+  }
+});
 
 app.post("/sections/create", async (req, res) => {
-  const { name, description, days, times, organization_id} = req.body;
+  const { name, description, days, times, organization_id } = req.body;
   console.log(name, description, days, times, organization_id);
-  
+
   try {
     await Section.create({
       section_name: name,
@@ -387,12 +397,26 @@ app.post("/sections/create", async (req, res) => {
       days: days,
       time: times,
       organization_id: organization_id,
-      
-    })
-  } catch(err) {
+    });
+  } catch (err) {
     console.log(err);
   }
-})
+});
+
+app.get("/organization/get/sections", async (req, res) => {
+  const { ogrn } = req.body;
+  if (ogrn) {
+    const sections = await Section.findAll({
+      where: {
+        organization_id: ogrn,
+      },
+    });
+
+    res.status(200).json({ status: "ok", data: sections });
+  } else{
+    res.status(400).json({status: "error", message:"ОГРН нет"});
+  }
+});
 
 app.listen(3000, () => {
   console.log("Server запущен");
