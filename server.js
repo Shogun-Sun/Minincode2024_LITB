@@ -7,6 +7,7 @@ const { sequelize, User, Organization, Section } = require("./server/database");
 const session = require("./server/session");
 const fs = require("fs");
 const upload = require("./server/fileUpload");
+const { v4: uuidv4 } = require('uuid');
 
 const hash = require("bcrypt");
 const salt = hash.genSaltSync(13);
@@ -81,18 +82,20 @@ app.post("/user/reg/data", async (req, res) => {
 
 app.post("/user/log/data", async (req, res) => {
   const { email, password } = req.body;
+
+  // Проверка, если пользователь уже авторизован
   if (req.session.user || req.session.organization) {
     return res
       .status(400)
       .json({ status: "error", message: "Пользователь уже авторизован" });
   }
+
+  // Если email и password предоставлены
   if (email && password) {
     try {
       const user = await User.findOne({
         where: { email: email },
       });
-
-      console.log(user.id);
 
       if (!user) {
         return res
@@ -100,8 +103,23 @@ app.post("/user/log/data", async (req, res) => {
           .json({ status: "error", message: "Неверный email или пароль" });
       }
 
-      const isMath = hash.compareSync(password, user.password);
-      if (isMath) {
+      const isMatch = hash.compareSync(password, user.password); // Проверка пароля
+      if (isMatch) {
+        // Проверка, есть ли уже активная сессия для этого пользователя
+        if (user.session) {
+          return res
+            .status(400)
+            .json({ status: "error", message: "Пользователь уже авторизован в другой сессии" });
+        }
+
+        // Генерация уникального токена для сессии
+        const sessionToken = uuidv4();
+
+        // Обновление сессии в базе данных
+        user.session = sessionToken;
+        await user.save();
+
+        // Сохранение информации о пользователе в сессию
         req.session.user = {
           id: user.id,
           surname: user.surname,
@@ -109,8 +127,10 @@ app.post("/user/log/data", async (req, res) => {
           middle_name: user.middle_name,
           email: user.email,
           role: user.role,
+          session: sessionToken // Сохраняем токен сессии в сессии
         };
-        res.status(200).json({ status: "ok", message: "Успешный вход" });
+
+        return res.status(200).json({ status: "ok", message: "Успешный вход" });
       } else {
         return res
           .status(400)

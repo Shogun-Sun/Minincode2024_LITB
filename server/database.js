@@ -43,8 +43,13 @@ const User = sequelize.define(
       allowNull: false,
       defaultValue: "user",
       validate: {
-        isIn: [["guest", "user", "organization", "admin"]],
+        isIn: [["user", "admin"]],
       }
+    },
+    session: {
+      type: DataTypes.STRING(255), 
+      allowNull: true, 
+      defaultValue: null, 
     },
   },
   {
@@ -157,7 +162,7 @@ sequelize
     console.log("Подключение успешно");
     User.sync();
     Organization.sync();
-    Sections.sync();
+    Section.sync();
   })
   .catch((error) => {
     console.log("Ошибка при подключении:", error);
