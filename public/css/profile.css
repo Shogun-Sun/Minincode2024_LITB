@@ -13,9 +13,10 @@
     --line-clr: rgb(66, 67, 74);
     --secondary-text-color: rgb(201, 201, 201);
 }
+body{
+    background-color: var(--base-color);
+}
 main{
-    min-height: 100vh;
-    min-width: 100%;
     background-color: var(--base-color);
 }
 label{
@@ -35,8 +36,12 @@ label{
 }
 
 @media (max-width: 661px){
+    main{
+        padding: 10px 20px 10px 20px;
+    }
     .container{
-        
+        border: 2px solid var(--line-clr);
+        border-radius: 10px;
     }
     #avatar{
         display: flex;
@@ -68,8 +73,12 @@ label{
 }
 
 @media (min-width: 662px) and (max-width: 999px){
+    main{
+        padding: 15px 30px 15px 30px;
+    }
     .container{
-        
+        border: 2px solid var(--line-clr);
+        border-radius: 10px;
     }
     #avatar{
         display: flex;
@@ -101,8 +110,12 @@ label{
 }
 
 @media (min-width: 1000px) and (max-width: 1484px){
+    main{
+        padding: 15px 30px 15px 30px;
+    }
     .container{
-        
+        border: 2px solid var(--line-clr);
+        border-radius: 10px;
     }
     #avatar{
         display: flex;
@@ -134,8 +147,12 @@ label{
 }
 
 @media (min-width: 1485px){
+    main{
+        padding: 15px 30px 15px 30px;
+    }
     .container{
-        
+        border: 2px solid var(--line-clr);
+        border-radius: 10px;
     }
     #avatar{
         display: flex;
