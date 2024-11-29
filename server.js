@@ -404,7 +404,7 @@ app.post("/sections/create", limiter, async (req, res) => {
   }
 });
 
-app.get("/organization/get/sections", async (req, res) => {
+app.post("/organization/get/sections", async (req, res) => {
   const { ogrn } = req.body;
   if (ogrn) {
     const sections = await Section.findAll({

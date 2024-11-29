@@ -43,11 +43,25 @@ fetch("/organization/getverified/data", {
                 .then((res) => res.json())
                 .then((dat) => {
                     console.log(dat)
-                    // data.forEach((section) => {
+                    dat.data.forEach((section) => {
+                        let sectionCard = document.createElement("div");
+                        let sectionName = document.createElement("p");
+                        let description = document.createElement("p");
+                        let days = document.createElement("p");
+                        let times = document.createElement("p");
 
-                    // })
+                        sectionName.innerText = section.section_name;
+                        description.innerText = section.description;
+                        days.innerText = section.days;
+                        times.innerText = section.time;
+
+                        sectionCard.append(sectionName, description, days, times)
+                        sectionsBlock.append(sectionCard)
+                    })
                 })
-            document.querySelector(".block").append(orgpage, sectionsBlock);
+                let sectionhead = document.createElement("p");
+                sectionhead. innerText = "Запись на секции"
+                document.querySelector(".block").append(orgpage, sectionhead, sectionsBlock);
         };
         orgcard.append(orgName, orgAddres, moreButton);
         document.querySelector("#organizations").appendChild(orgcard);
