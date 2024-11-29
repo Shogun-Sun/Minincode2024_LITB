@@ -155,7 +155,8 @@ app.post("/organization/log/data", async (req, res) => {
                 address: organization.address,
                 email: organization.email,
                 phone: organization.phone,
-                organization_name: organization.organization_name,                
+                organization_name: organization.organization_name,       
+                role: organization.role,         
               }
               res.status(200).json({ status: "ok", message: "Успешный вход" });
             } else {
