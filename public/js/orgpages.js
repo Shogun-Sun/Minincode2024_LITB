@@ -10,9 +10,13 @@ fetch("/organization/getverified/data", {
     data.data.forEach((org) => {
         console.log(org);
         let orgcard = document.createElement("div");
+        orgcard.classList.add('card');
         let orgName = document.createElement("p");
+        orgName.classList.add('Name')
         let orgAddres = document.createElement("p");
+        orgAddres.classList.add('adres');
         let moreButton = document.createElement("button");
+        moreButton.classList.add('button');
         orgName.textContent = org.organization_name;
         orgAddres.textContent = org.address;
         moreButton.innerText = "Подробнее";
@@ -27,7 +31,7 @@ fetch("/organization/getverified/data", {
             email.innerText = `Почта организации: ${org.email}`;
             contactInfo.append(orgAddres, phone, email);
             orgpage.append(orgName, contactInfo);
-            document.querySelector(".container").appendChild(orgpage);
+            document.querySelector(".block").appendChild(orgpage);
         };
         orgcard.append(orgName, orgAddres, moreButton);
         document.querySelector("#organizations").appendChild(orgcard);

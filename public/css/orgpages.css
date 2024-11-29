@@ -1,0 +1,182 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial;
+    text-decoration: none;
+    outline: none;
+    border: none;
+}
+:root{
+    --text-color:rgb(255, 255, 255); 
+    --accent-color: rgb(218, 2, 66);
+    --base-color:  rgb(17, 24, 39);
+    --line-clr: #42434a;
+    --secondary-text-color: rgb(155, 155, 155);
+}
+.button{
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border-radius: 5px;
+    border:1px solid var(--accent-color);
+    transition: all 0.3s ease;
+}
+.button:hover{
+    background-color: var(--text-color);
+    color: var(--accent-color);
+    transition: all 0.3s ease;
+}
+
+
+@media (max-width: 661px){
+    main{
+        padding: 20px 10px 10px 10px;
+        display: flex;
+        justify-content: center;
+    }
+    h1{
+        color: var(--text-color);
+        align-self: flex-start; 
+        font-size: 40px;
+     }
+     .block{
+        border-radius: 10px;
+        padding: 10px;
+        width: 100%;
+        border: 2px solid var(--line-clr);
+     }
+     #organizations{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: column;
+        padding: 20px;
+     }
+     .card{
+        margin: 20px;
+        padding: 10px;
+        border: 2px solid var(--line-clr);
+        background-color: var(--base-color);
+        width: 200px;
+     }
+     .Name{
+         font-size: 22px;
+     }
+     .adres{
+         font-size: 16px;
+         color: var(--secondary-text-color);
+     }
+     .button{
+         font-size: 16px;
+     }
+
+}
+
+@media (min-width: 662px) and (max-width: 999px){
+    main{
+        padding: 20px 10px 10px 10px;
+    }
+    h1{
+        color: var(--text-color);
+        align-self: flex-start; 
+        flex-direction: column;
+        font-size: 40px;
+     }
+     .block{
+        border-radius: 10px;
+        padding: 10px;
+        width: 100%;
+        border: 2px solid var(--line-clr);
+     }
+     #organizations{
+         display: flex;
+         justify-content: space-around;
+     }
+     .card{
+         padding: 10px;
+         border: 2px solid var(--line-clr);
+         background-color: var(--base-color);
+         width: 200px;
+     }
+     .Name{
+         font-size: 26px;
+     }
+     .adres{
+         font-size: 22px;
+         color: var(--secondary-text-color);
+     }
+     .button{
+         font-size: 20px;
+     }
+    
+}
+
+@media (min-width: 1000px) and (max-width: 1484px){
+    h1{
+        color: var(--text-color);
+        align-self: flex-start; 
+        flex-direction: column;
+        font-size: 45px;
+     }
+     .block{
+        border-radius: 10px;
+        padding: 10px;
+        width: 100%;
+        border: 2px solid var(--line-clr);
+     }
+     #organizations{
+         display: flex;
+         justify-content: space-around;
+     }
+     .card{
+         padding: 10px;
+         border: 2px solid var(--line-clr);
+         background-color: var(--base-color);
+         width: 250px;
+     }
+     .Name{
+         font-size: 30px;
+     }
+     .adres{
+         font-size: 24px;
+         color: var(--secondary-text-color);
+     }
+     .button{
+         font-size: 22px;
+     }
+}
+
+@media (min-width: 1485px){
+    h1{
+       color: var(--text-color);
+       align-self: flex-start; 
+       flex-direction: column;
+       font-size: 50px;
+    }
+    .block{
+        border-radius: 10px;
+        padding: 10px;
+        width: 100%;
+        border: 2px solid var(--line-clr);
+    }
+    #organizations{
+        display: flex;
+        justify-content: space-around;
+    }
+    .card{
+        padding: 10px;
+        border: 2px solid var(--line-clr);
+        background-color: var(--base-color);
+        width: 250px;
+    }
+    .Name{
+        font-size: 30px;
+    }
+    .adres{
+        font-size: 24px;
+        color: var(--secondary-text-color);
+    }
+    .button{
+        font-size: 22px;
+    }
+
+}
