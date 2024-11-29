@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((data) => {
         console.log(data);
       if (data.status === "error") {
-        console.log(1)
         fetch("/organization/get/data", {
             method:"GET",
             headers:{
@@ -18,6 +17,9 @@ document.addEventListener("DOMContentLoaded", () => {
         })
           .then(res => res.json())
           .then(data => {
+            if (data.message == 'Вы не авторизовались') {
+                window.location.href = '/user/log/page';
+            } else {
                 console.log(data)
                 document.querySelector("#name").textContent = data.data.organization_name;
                 let email = document.createElement("p");
@@ -36,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 document.querySelector("#contactInfo").append(email, phone, address, ogrn, status, sections, events);
 
-
+            }
           })
       } else {
         const avatar = document.createElement("img");

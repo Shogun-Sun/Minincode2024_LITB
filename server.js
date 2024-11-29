@@ -332,6 +332,8 @@ app.get("/organization/get/data", (req, res) => {
                 role: req.session.organization.role           
           };
           res.status(200).json({ data: data });
+    } else {
+      res.status(400).json({ status: "error", message: "Вы не авторизовались" });
     }
 })
 

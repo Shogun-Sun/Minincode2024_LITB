@@ -10,6 +10,11 @@ document.querySelector("#register").onclick = () => {
     sendData();
   }
 };
+
+document.querySelector("#registerOrg").onclick = () => {
+  window.location.href = '/organization/reg/page';
+}
+
 function sendData() {
   regForm.name = document.querySelector("#name").value;
   regForm.surname = document.querySelector("#surname").value;
