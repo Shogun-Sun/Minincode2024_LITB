@@ -335,6 +335,22 @@ app.get("/organization/get/data", (req, res) => {
     }
 })
 
+app.post("/sesion/create", async (req, res) => {
+  const { name, description, days, times, organization_id} = req.body;
+  console.log(name, description, days, times, organization_id);
+//   try {
+//     await sections.create({
+//       section_name: name,
+//       description: description,
+//       days: days,
+//       time: times,
+//       organization_id: organization_id,
+//     })
+//   } catch(err) {
+//     console.log(err);
+//   }
+})
+
 app.listen(3000, () => {
   console.log("Server запущен");
 });
