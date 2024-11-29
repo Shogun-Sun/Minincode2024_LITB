@@ -143,3 +143,11 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch((error) => {});
 });
+
+const logout = document.getElementById("logout");
+logout.addEventListener("click", () => {
+  fetch("/logout", {
+    method: "POST",
+  })
+  window.location.href="/";
+})

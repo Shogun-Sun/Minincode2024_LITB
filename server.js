@@ -83,14 +83,14 @@ app.post("/user/reg/data", async (req, res) => {
 app.post("/user/log/data", async (req, res) => {
   const { email, password } = req.body;
 
-  // Проверка, если пользователь уже авторизован
+
   if (req.session.user || req.session.organization) {
     return res
       .status(400)
       .json({ status: "error", message: "Пользователь уже авторизован" });
   }
 
-  // Если email и password предоставлены
+
   if (email && password) {
     try {
       const user = await User.findOne({
@@ -103,9 +103,9 @@ app.post("/user/log/data", async (req, res) => {
           .json({ status: "error", message: "Неверный email или пароль" });
       }
 
-      const isMatch = hash.compareSync(password, user.password); // Проверка пароля
+      const isMatch = hash.compareSync(password, user.password); 
       if (isMatch) {
-        // Проверка, есть ли уже активная сессия для этого пользователя
+
         if (user.session) {
           return res
             .status(400)
@@ -115,11 +115,9 @@ app.post("/user/log/data", async (req, res) => {
         // Генерация уникального токена для сессии
         const sessionToken = uuidv4();
 
-        // Обновление сессии в базе данных
         user.session = sessionToken;
         await user.save();
 
-        // Сохранение информации о пользователе в сессию
         req.session.user = {
           id: user.id,
           surname: user.surname,
@@ -127,7 +125,7 @@ app.post("/user/log/data", async (req, res) => {
           middle_name: user.middle_name,
           email: user.email,
           role: user.role,
-          session: sessionToken // Сохраняем токен сессии в сессии
+          session: sessionToken 
         };
 
         return res.status(200).json({ status: "ok", message: "Успешный вход" });
@@ -306,6 +304,27 @@ app.get("/organization/getverified/data", async (req, res) => {
     },
   });
   res.status(200).json({ status: "ok", data: data });
+});
+
+app.post("/logout", async (req, res) => {
+  if (!req.session.user) {
+    return res.status(400).json({ status: "error", message: "Вы не авторизованы" });
+  }
+  const userId = req.session.user.id;
+  try {
+    await User.update({ session: null }, { where: { id: userId } });
+
+    req.session.destroy((err) => {
+      if (err) {
+        return res.status(500).json({ status: "error", message: "Ошибка при выходе" });
+      }
+      
+      res.status(200).json({ status: "ok", message: "Вы успешно вышли из системы" });
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ status: "error", message: "Произошла ошибка при удалении сессии из базы данных" });
+  }
 });
 
 
