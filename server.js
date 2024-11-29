@@ -16,7 +16,6 @@ app.use(bodyparser.json());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(session);
 app.use(router);
-app.use(limiter);
 
 app.post("/user/reg/data", limiter, async (req, res) => {
   const { name, surname, middle_name, email, password } = req.body;
@@ -387,7 +386,7 @@ app.get("/organization/get/data", (req, res) => {
   }
 });
 
-app.post("/sections/create", limiter, async (req, res) => {
+app.post("/sections/create", async (req, res) => {
   const { name, description, days, times, organization_id } = req.body;
   console.log(name, description, days, times, organization_id);
 
