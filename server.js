@@ -327,7 +327,8 @@ app.get("/organization/get/data", (req, res) => {
                 address: req.session.organization.address,
                 email: req.session.organization.email,
                 phone: req.session.organization.phone,
-                organization_name: req.session.organization.organization_name,                
+                organization_name: req.session.organization.organization_name,     
+                role: req.session.organization.role           
           };
           res.status(200).json({ data: data });
     }
