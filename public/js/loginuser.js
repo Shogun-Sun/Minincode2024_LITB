@@ -20,7 +20,7 @@ document.querySelector("#login").onclick = () => {
         if (data.status === "error") {
           alert(data.message);
         } else {
-          alert(data.message);
+        window.location.href = "/user/profile";
         }
       });
   } else {
@@ -34,7 +34,9 @@ document.querySelector("#login").onclick = () => {
       body: JSON.stringify(organData),
     })
     .then((res) => res.json())
-    .then((data) => {console.log(data)})
+    .then((data) => {console.log(data)
+      window.location.href = "/user/profile";
+    })
     
   }
 };

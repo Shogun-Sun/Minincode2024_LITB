@@ -38,3 +38,30 @@ sing_up.addEventListener('click', () => {
 orgs.addEventListener('click', () => {
   window.location.href = '/organization/page';
 })
+
+fetch("/user/get/data", {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+  },
+})
+  .then((res) => res.json())
+  .then((data) => {
+      console.log(data);
+      if (data.data.role == 'admin') {
+        profile.remove();
+        let div = document.createElement("div");
+        div.classList.add("section");
+        let a = document.createElement("a");
+        let i = document.createTreeWalker("i");
+        i.classList.add("bi-info-square");
+        i.classList.add("bi");
+        i.classList.add("iconse");
+        a.appendChild(i);
+        div.appendChild(a);
+        div.addEventListener("click", () => {
+          window.location.href = "/moderationorg";
+        })
+        document.querySelector("#nav_block").appendChild(div)
+      }
+  })
