@@ -35,10 +35,69 @@ label{
 }
 
 @media (max-width: 661px){
-
+    .container{
+        
+    }
+    #avatar{
+        display: flex;
+        justify-content: center;
+        padding: 30px;
+    }
+    #avatar_pict{
+        display: block;
+        border-radius: 10px;
+        height: auto;
+        width: 100px;
+        object-fit: contain;
+    }
+    h1{
+        color: var(--text-color);
+        font-size: 40px;
+        text-align: center;
+    }
+    #contactInfo{
+        display: flex;
+        flex-direction: column;
+    }
+    #contactInfo > p{
+        color: var(--text-color);
+        font-size: 16px;
+        display: block;
+        margin: 10px;
+    }
 }
 
 @media (min-width: 662px) and (max-width: 999px){
+    .container{
+        
+    }
+    #avatar{
+        display: flex;
+        justify-content: center;
+        padding: 30px;
+    }
+    #avatar_pict{
+        display: block;
+        border-radius: 10px;
+        height: auto;
+        width: 180px;
+        object-fit: contain;
+    }
+    h1{
+        color: var(--text-color);
+        font-size: 40px;
+        text-align: center;
+    }
+    #contactInfo{
+        display: flex;
+        flex-direction: column;
+    }
+    #contactInfo > p{
+        color: var(--text-color);
+        font-size: 20px;
+        display: block;
+        margin: 20px;
+    }
 }
 
 @media (min-width: 1000px) and (max-width: 1484px){
@@ -59,7 +118,7 @@ label{
     }
     h1{
         color: var(--text-color);
-        font-size: 60px;
+        font-size: 50px;
         text-align: center;
     }
     #contactInfo{
