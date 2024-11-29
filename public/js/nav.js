@@ -4,6 +4,7 @@ const home = document.getElementById('section_1');
 const sing_in = document.getElementById('section_2');
 const profile = document.getElementById('section_5');
 const sing_up = document.getElementById('section_6');
+const orgs = document.getElementById("section_4");
 
 
 for (let i = 0; i < section.length; i++) {
@@ -32,4 +33,8 @@ profile.addEventListener('click', ()=>{
 
 sing_up.addEventListener('click', () => {
   window.location.href = '/user/reg/page';
+})
+
+orgs.addEventListener('click', () => {
+  window.location.href = '/organization/page';
 })

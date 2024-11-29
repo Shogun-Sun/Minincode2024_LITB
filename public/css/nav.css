@@ -58,11 +58,8 @@ main p{
 #section_2::after{
     content: "Sing in";
 }
-#section_3::after{
-    content: "News";
-}
 #section_4::after{
-    content: "Events";
+    content: "Orgs";
 }
 #section_5::after{
     content: "Profile";

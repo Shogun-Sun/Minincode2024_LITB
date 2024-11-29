@@ -1,5 +1,5 @@
 regForm = {};
-document.querySelector(".main").onclick = () => {
+document.querySelector("#main").onclick = () => {
   window.location.href = "/";
 };
 document.querySelector("#register").onclick = () => {
