@@ -56,7 +56,7 @@ main p{
     content: " Home";
 }
 #section_2::after{
-    content: "Log in";
+    content: "Sing in";
 }
 #section_3::after{
     content: "News";
@@ -66,6 +66,9 @@ main p{
 }
 #section_5::after{
     content: "Profile";
+}
+#section_6::after{
+    content: "Sing up";
 }
 
 .active{
