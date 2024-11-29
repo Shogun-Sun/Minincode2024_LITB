@@ -1,5 +1,8 @@
 userData = {};
 organData = {};
+document.querySelector("#main").onclick = () => {
+  window.location.href = "/";
+};
 document.querySelector("#login").onclick = () => {
   userData.email = document.querySelector("#email").value;
   userData.password = document.querySelector("#password").value;
@@ -31,7 +34,7 @@ document.querySelector("#login").onclick = () => {
       body: JSON.stringify(organData),
     })
     .then((res) => res.json())
-    // .then((data) => {console.log(data)})
+    .then((data) => {console.log(data)})
     
   }
 };

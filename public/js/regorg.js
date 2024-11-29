@@ -1,4 +1,7 @@
 regForm = {};
+document.querySelector("#main").onclick = () => {
+    window.location.href = "/";
+  };
 document.querySelector("#send").onclick = () => {
     let first_password = document.querySelector("#first_password").value
     let second_password = document.querySelector("#second_password").value
