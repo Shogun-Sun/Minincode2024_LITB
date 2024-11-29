@@ -115,15 +115,52 @@ const Organization = sequelize.define(
   }
 );
 
+const Section = sequelize.define('Section', {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true, 
+  },
+  section_name: {
+    type: DataTypes.STRING(255), 
+    allowNull: false,
+  },
+  description: {
+    type: DataTypes.TEXT, 
+    allowNull: true, 
+  },
+  days: {
+    type: DataTypes.STRING(255), 
+    allowNull: false,
+  },
+  time: {
+    type: DataTypes.STRING(255),
+    allowNull: false,
+  },
+  organization_id: {
+    type: DataTypes.INTEGER, 
+    allowNull: false,
+  },
+  registered_users: {
+    type: DataTypes.JSONB, 
+    allowNull: true, 
+    defaultValue: []
+  },
+}, {
+  tableName: 'sections', 
+  timestamps: false, 
+});
+
 sequelize
   .authenticate()
   .then(() => {
     console.log("Подключение успешно");
     User.sync();
     Organization.sync();
+    Sections.sync();
   })
   .catch((error) => {
     console.log("Ошибка при подключении:", error);
   });
 
-module.exports = { User, Organization, sequelize };
+module.exports = { User, Organization, Section, sequelize };

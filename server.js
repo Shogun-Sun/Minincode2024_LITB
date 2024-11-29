@@ -3,7 +3,7 @@ const path = require("path");
 const app = express();
 const router = require("./public/pageRouter");
 const bodyparser = require("body-parser");
-const { sequelize, User, Organization } = require("./server/database");
+const { sequelize, User, Organization, Section } = require("./server/database");
 const session = require("./server/session");
 const fs = require("fs");
 const upload = require("./server/fileUpload");
@@ -337,20 +337,22 @@ app.get("/organization/get/data", (req, res) => {
     }
 })
 
-app.post("/sesion/create", async (req, res) => {
+app.post("/sections/create", async (req, res) => {
   const { name, description, days, times, organization_id} = req.body;
   console.log(name, description, days, times, organization_id);
-//   try {
-//     await sections.create({
-//       section_name: name,
-//       description: description,
-//       days: days,
-//       time: times,
-//       organization_id: organization_id,
-//     })
-//   } catch(err) {
-//     console.log(err);
-//   }
+  
+  try {
+    await Section.create({
+      section_name: name,
+      description: description,
+      days: days,
+      time: times,
+      organization_id: organization_id,
+      
+    })
+  } catch(err) {
+    console.log(err);
+  }
 })
 
 app.listen(3000, () => {
