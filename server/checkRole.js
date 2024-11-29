@@ -9,7 +9,7 @@ function checkRole(req, res, next) {
    
     const allowedPathsForUser = ["/user/profile", "/user/settings"];
     if (allowedPathsForUser.includes(req.originalUrl)) {
-      return next();  // Доступ разрешен
+      return next();  
     }
   }
 
@@ -20,7 +20,6 @@ function checkRole(req, res, next) {
     }
   }
 
-  // Для гостей: разрешаем доступ только к определенным страницам
   if (!req.session.user) {
     const allowedPathsForGuest = ["/", "/user/reg/page"];
     if (allowedPathsForGuest.includes(req.originalUrl)) {
@@ -28,7 +27,7 @@ function checkRole(req, res, next) {
     }
   }
 
-  // Если путь не разрешен для текущей роли, показываем страницу отказа в доступе
+
   res.status(403).sendFile(path.join(__dirname, "../pages", "permissiondenied.html"));
 }
 

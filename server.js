@@ -320,6 +320,19 @@ app.get("/user/get/data", (req, res) => {
     res.status(400).json({ status: "error", message: "Вы не авторизовались" });
   }
 });
+app.get("/organization/get/data", (req, res) => {
+    if(req.session.organization){
+        const data = {
+                ogrn: req.session.organization.ogrn,
+                address: req.session.organization.address,
+                email: req.session.organization.email,
+                phone: req.session.organization.phone,
+                organization_name: req.session.organization.organization_name,                
+          };
+          res.status(200).json({ data: data });
+    }
+})
+
 app.listen(3000, () => {
   console.log("Server запущен");
 });

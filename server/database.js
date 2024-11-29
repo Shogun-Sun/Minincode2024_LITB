@@ -102,7 +102,12 @@ const Organization = sequelize.define(
     description: {
       type: DataTypes.TEXT,
       allowNull: true,
-    }
+    },
+    role: {
+      type: DataTypes.STRING(50),
+      allowNull: false,
+      defaultValue: 'organization',
+    },
   },
   {
     tableName: "organizations",
