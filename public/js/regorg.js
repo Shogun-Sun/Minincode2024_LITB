@@ -11,6 +11,7 @@ document.querySelector("#send").onclick = () => {
         document.querySelector("#second_password").classList.add('is-invalid');
     } else {
         sendOrgData();
+        window.location.href = "/"
     }
 };
 function sendOrgData() {

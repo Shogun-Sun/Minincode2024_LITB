@@ -56,11 +56,13 @@ fetch("/organization/getverified/data", {
                         times.innerText = section.time;
 
                         sectionCard.append(sectionName, description, days, times)
+                        sectionCard.classList.add("sectionCard")
                         sectionsBlock.append(sectionCard)
                     })
                 })
                 let sectionhead = document.createElement("p");
-                sectionhead. innerText = "Запись на секции"
+                sectionhead.classList.add("sectionhead");
+                sectionhead.innerText = "Запись на секции"
                 document.querySelector(".block").append(orgpage, sectionhead, sectionsBlock);
         };
         orgcard.append(orgName, orgAddres, moreButton);
